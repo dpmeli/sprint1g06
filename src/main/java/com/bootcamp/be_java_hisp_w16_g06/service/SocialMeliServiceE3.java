@@ -26,7 +26,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
     }
 
     @Override
-    public List<ResponsePostDTO> getAllPost() {
+    public List<ResponsePostDTO> getAllPost(int userId) {
         return null;
     }
 
