@@ -1,6 +1,5 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
-
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
 import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
