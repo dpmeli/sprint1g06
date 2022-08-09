@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5de0d4-b12b-4c24-9474-18b6e1c702ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/Follow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/empty.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +83,7 @@
       <updated>1660054354573</updated>
       <workItem from="1660054355777" duration="35000" />
       <workItem from="1660054749009" duration="597000" />
-      <workItem from="1660060353651" duration="1429000" />
+      <workItem from="1660060353651" duration="2735000" />
     </task>
     <servers />
   </component>
