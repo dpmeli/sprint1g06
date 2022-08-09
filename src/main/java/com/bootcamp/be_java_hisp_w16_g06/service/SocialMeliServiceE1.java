@@ -22,7 +22,7 @@ public class SocialMeliServiceE1 implements ISocialMedia {
         int id = followIdDto.getUserId();
         int fid = followIdDto.getUserIdToFollow();
 
-       // Accion Follow
+        // Accion Follow
         listFollowed.add(new Follow(fid, user3.getUserName()));
         user1.setFollowed(listFollowed);
 

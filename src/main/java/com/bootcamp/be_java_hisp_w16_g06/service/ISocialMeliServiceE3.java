@@ -8,6 +8,7 @@ import java.util.List;
 public interface ISocialMeliServiceE3 {
 
     void createPost(RequestPostDTO requestPostDTO);
+
     List<ResponsePostDTO> getAllPost(int userId);
 
 }

@@ -30,13 +30,12 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
         return null;
     }
 
-    private Post requestDTOToEntity(RequestPostDTO dto)
-    {
-        Product product = new Product(dto.getProduct().getProduct_id(), dto.getProduct().getProduct_name(),dto.getProduct().getType(), dto.getProduct().getBrand(), dto.getProduct().getColor(), dto.getProduct().getNotes());
+    private Post requestDTOToEntity(RequestPostDTO dto) {
+        Product product = new Product(dto.getProduct().getProduct_id(), dto.getProduct().getProduct_name(), dto.getProduct().getType(), dto.getProduct().getBrand(), dto.getProduct().getColor(), dto.getProduct().getNotes());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate = LocalDate.parse(dto.getDate(), formatter);
 
-        return  new Post(product,dto.getUser_id(), postRepository.getCorrelativo(), localDate,dto.getCategory(),dto.getPrice(),false, 0d);
+        return new Post(product, dto.getUser_id(), postRepository.getCorrelativo(), localDate, dto.getCategory(), dto.getPrice(), false, 0d);
     }
 }
