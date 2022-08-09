@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "184df4dc-0c75-4393-bbb4-4e303368cc85",
+		"name": "SocialMeliAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestResponseData",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
