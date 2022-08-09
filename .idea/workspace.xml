@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5de0d4-b12b-4c24-9474-18b6e1c702ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/BeJavaHispW16G06Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/BeJavaHispW16G06Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/service/ISocialMedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/service/ISocialMedia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/service/SocialMeliServiceE1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/service/SocialMeliServiceE1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
