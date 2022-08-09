@@ -1,10 +1,7 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
 
-import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
-import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
-import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
-import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
+import com.bootcamp.be_java_hisp_w16_g06.dto.*;
 import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE21;
@@ -20,6 +17,10 @@ public class SocialMeliController {
 
     @Autowired
     ISocialMeliServiceE3 socialMaMeliServiceE3;
+    @Autowired
+    SocialMeliServiceE1 serviceE1;
+    @Autowired
+    SocialMeliServiceE21 service2;
 
     @GetMapping
     public ResponseEntity<Response> test() {
@@ -27,8 +28,7 @@ public class SocialMeliController {
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
-    @Autowired
-    SocialMeliServiceE1 serviceE1;
+
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
@@ -41,15 +41,13 @@ public class SocialMeliController {
     }
 
     //SocialMeliServiceE2 socialMeliServiceE2 = new SocialMeliServiceE2();
-    @Autowired
-    SocialMeliServiceE21 service2;
+
 
 
     //US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
     @GetMapping("/users/{userId}/followers/count")
-    public ResponseEntity<List<UserDTO>> US002(@PathVariable int userId) {
-        return new ResponseEntity<>(service2.userFollowers(userId), HttpStatus.ACCEPTED);
-        // return new ResponseEntity<>(socialMeliServiceE2.userFollowers(userId), HttpStatus.ACCEPTED);
+    public ResponseEntity<FollowersCountDTO> US002(@PathVariable int userId) {
+        return new ResponseEntity<>(service2.userFollowers(userId), HttpStatus.OK);
     }
 
 
