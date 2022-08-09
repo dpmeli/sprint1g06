@@ -7,7 +7,7 @@ import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
 import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE2;
+import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE21;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,12 +40,15 @@ public class SocialMeliController {
         }
     }
 
-    SocialMeliServiceE2 socialMeliServiceE2 = new SocialMeliServiceE2();
+    //SocialMeliServiceE2 socialMeliServiceE2 = new SocialMeliServiceE2();
+    @Autowired
+    SocialMeliServiceE21 service2;
+
 
     //US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
     @GetMapping("/users/{userId}/followers/count")
     public ResponseEntity<List<UserDTO>> US002(@PathVariable int userId) {
-        return null;
+        return new ResponseEntity<>(service2.userFollowers(userId), HttpStatus.ACCEPTED);
         // return new ResponseEntity<>(socialMeliServiceE2.userFollowers(userId), HttpStatus.ACCEPTED);
     }
 
