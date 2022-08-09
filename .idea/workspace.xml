@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5de0d4-b12b-4c24-9474-18b6e1c702ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/controller/SocialMeliController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../3. spring/covid (copy)" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/controller/SocialMeliController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06/controller/SocialMeliController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -38,7 +40,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/dpatino/Desktop/Bootcamp/Git-bootcamp/practicas-w16/4. sprint/be_java_hisp_w16_g06/src/main/java/com/bootcamp/be_java_hisp_w16_g06",
+    "last_opened_file_path": "/Users/dpatino/Desktop/Bootcamp/Codigo/sprint1g06",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -51,7 +53,14 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.BeJavaHispW16G06Application (1)">
+    <configuration name="BeJavaHispW16G06Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sprint1g06" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w16_g06.BeJavaHispW16G06Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BeJavaHispW16G06Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="be_java_hisp_w16_g06" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w16_g06.BeJavaHispW16G06Application" />
@@ -70,6 +79,7 @@
       <updated>1660054354573</updated>
       <workItem from="1660054355777" duration="35000" />
       <workItem from="1660054749009" duration="597000" />
+      <workItem from="1660060353651" duration="365000" />
     </task>
     <servers />
   </component>

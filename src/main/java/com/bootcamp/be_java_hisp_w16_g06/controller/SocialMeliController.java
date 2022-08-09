@@ -1,11 +1,18 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SocialMeliController {
+
+    @GetMapping
+    public ResponseEntity<String> test(){
+        return new ResponseEntity<>("Mensaje recibido",HttpStatus.ACCEPTED);
+    }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
