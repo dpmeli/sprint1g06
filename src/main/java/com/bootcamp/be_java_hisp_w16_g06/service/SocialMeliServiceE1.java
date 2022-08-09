@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMeliServiceE1 implements ISocialMedia {
+public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
     List<Follow> listFollowed = new ArrayList<>();
     List<Follow> listFollowers = new ArrayList<>();
@@ -54,6 +54,7 @@ public class SocialMeliServiceE1 implements ISocialMedia {
 
     }
 
+    @Override
     public boolean findById(int userId) {
 
         List<User> users = userFollowersRepository.getUsersList()
