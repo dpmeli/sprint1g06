@@ -22,7 +22,7 @@ public class SocialMeliController {
 
     @GetMapping
     public ResponseEntity<Response> test() {
-        return new ResponseEntity<>(new Response("Mensaje Aceptado", 200), HttpStatus.valueOf(200));
+        return new ResponseEntity<>(new Response("Message Accepted", 200), HttpStatus.valueOf(200));
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
