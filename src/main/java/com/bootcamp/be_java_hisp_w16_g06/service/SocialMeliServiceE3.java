@@ -39,5 +39,4 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
         return  new Post(product,dto.getUser_id(), postRepository.getCorrelativo(), localDate,dto.getCategory(),dto.getPrice(),false, 0d);
     }
-
 }
