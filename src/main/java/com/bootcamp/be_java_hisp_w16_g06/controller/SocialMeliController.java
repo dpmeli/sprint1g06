@@ -1,19 +1,21 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
+
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
+import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
+import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SocialMeliController {
 
+    @Autowired
+    ISocialMeliServiceE3 socialMaMeliServiceE3;
     @GetMapping
     public ResponseEntity<Response> test() {
         return new ResponseEntity<>(new Response("Mensaje Aceptado", 200), HttpStatus.valueOf(200));
@@ -26,7 +28,6 @@ public class SocialMeliController {
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
         try {
-            // System.out.println(userId + " - " + userIdToFollow);
             serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
             return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
         } catch (Exception e) {
@@ -54,8 +55,10 @@ public class SocialMeliController {
 
     //US 0005: Dar de alta una nueva publicación
     @PostMapping("/products/post")
-    public void US005() {
 
+    public ResponseEntity<Response> US005(@RequestBody RequestPostDTO dto){
+        socialMaMeliServiceE3.createPost(dto);
+        return new ResponseEntity<>(new Response("",200), HttpStatus.valueOf(200));
     }
 
     //US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las
