@@ -1,6 +1,9 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
+import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
 import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
+import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,50 +15,59 @@ import org.springframework.web.bind.annotation.RestController;
 public class SocialMeliController {
 
     @GetMapping
-    public ResponseEntity<Response> test(){
+    public ResponseEntity<Response> test() {
         return new ResponseEntity<>(new Response("Mensaje Aceptado", 200), HttpStatus.valueOf(200));
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
-    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public void US001(@PathVariable int userId, @PathVariable int userIdToFollow){
+    @Autowired
+    SocialMeliServiceE1 serviceE1;
 
+    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
+    public ResponseEntity US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        try {
+            // System.out.println(userId + " - " + userIdToFollow);
+            serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
+            return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
     @GetMapping("/users/{userId}/followers/count")
-    public void US002(){
+    public void US002() {
 
     }
 
     //US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
     @GetMapping("/users/{userId}/followers/list")
-    public void US003(){
+    public void US003() {
 
     }
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
     @GetMapping("/users/{userId}/followed/list")
-    public void US004(){
+    public void US004() {
 
     }
 
     //US 0005: Dar de alta una nueva publicación
     @PostMapping("/products/post")
-    public void US005(){
+    public void US005() {
 
     }
 
     //US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las
     // últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
     @PostMapping("/products/followed/{userId}/list")
-    public void US006(){
+    public void US006() {
 
     }
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public void US007(){
+    public void US007() {
 
     }
 
@@ -66,7 +78,7 @@ public class SocialMeliController {
     //      users/{UserID}/followed/list?order=name_desc
     //  *Nota: Este ordenamiento aplica solo para US-003 y US-004.
     @GetMapping("/US008") //Cambiar Endpoint
-    public void US008(){
+    public void US008() {
 
     }
 
@@ -75,7 +87,7 @@ public class SocialMeliController {
     //     products/followed/{userId}/list?order=date_desc
     //  *Nota: Este ordenamiento aplica solo para la US-006
     @GetMapping("US009") //Cambiar Endpoint
-    public void US009(){
+    public void US009() {
 
     }
 
@@ -83,13 +95,13 @@ public class SocialMeliController {
 
     //US 0010: Llevar a cabo la publicación de un nuevo producto en promoción
     @PostMapping("/products/promo-post")
-    public void US0010(){
+    public void US0010() {
 
     }
 
     //US 0011: Obtener la cantidad de productos en promoción de un determinado vendedor
     @GetMapping("/products/promo-post/count?user_id={userId}")
-    public void US0011(){
+    public void US0011() {
 
     }
 
@@ -97,7 +109,7 @@ public class SocialMeliController {
 
     //US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
     @GetMapping("/products/promo-post/list?user_id={userId}")
-    public void US0012(){
+    public void US0012() {
 
     }
 
