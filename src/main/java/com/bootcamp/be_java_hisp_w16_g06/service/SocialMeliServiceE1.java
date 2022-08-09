@@ -22,16 +22,24 @@ public class SocialMeliServiceE1 implements ISocialMedia {
         int id = followIdDto.getUserId();
         int fid = followIdDto.getUserIdToFollow();
 
-        listFollowed = user1.getFollowed();
+       // Accion Follow
         listFollowed.add(new Follow(fid, user3.getUserName()));
         user1.setFollowed(listFollowed);
 
-        listFollowers = user3.getFollowers();
-        //listFollowers.add(new Follow(id, user1.getUserName()));
-        //user3.setFollowers(listFollowers);
+        listFollowers.add(new Follow(id, user1.getUserName()));
+        user3.setFollowers(listFollowers);
+
+        //listFollowed = user1.getFollowed(); //listFollowers = user3.getFollowers();
 
         System.out.println(user1.getUserName() + ": " + user1);
         System.out.println(user2.getUserName() + ": " + user2);
         System.out.println(user3.getUserName() + ": " + user3);
     }
+
+    @Override
+    public void unfollowUser(FollowIdDto followIdDto) {
+
+    }
+
+
 }

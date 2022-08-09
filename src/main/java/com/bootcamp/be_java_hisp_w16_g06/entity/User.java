@@ -15,7 +15,7 @@ public class User {
     private List<Follow> followed;
     private List<Follow> followers;
 
-    public User(int userId, String userName){
+    public User(int userId, String userName) {
         this.userId = userId;
         this.userName = userName;
     }
