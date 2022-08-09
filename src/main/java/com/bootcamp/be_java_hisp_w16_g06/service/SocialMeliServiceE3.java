@@ -17,12 +17,16 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
     @Autowired
     PostRepository postRepository;
+    @Autowired
+    ISocialMeliServiceE1 socialMeliServiceE1;
 
     @Override
     public void createPost(RequestPostDTO requestPostDTO) {
-        List<Post> lstRepository = postRepository.getPosts();
-        lstRepository.add(requestDTOToEntity(requestPostDTO));
-        postRepository.setPosts(lstRepository);
+        if(socialMeliServiceE1.findById(requestPostDTO.getUser_id())) {
+            List<Post> lstRepository = postRepository.getPosts();
+            lstRepository.add(requestDTOToEntity(requestPostDTO));
+            postRepository.setPosts(lstRepository);
+        }
     }
 
     @Override
