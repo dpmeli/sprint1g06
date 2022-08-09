@@ -54,7 +54,6 @@ public class SocialMeliServiceE1 implements ISocialMedia {
 
     }
 
-
     public boolean findById(int userId) {
 
         List<User> users = userFollowersRepository.getUsersList()
