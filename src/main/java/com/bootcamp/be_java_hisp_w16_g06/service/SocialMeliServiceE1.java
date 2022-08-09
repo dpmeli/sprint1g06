@@ -1,12 +1,17 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
+import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SocialMeliServiceE1 implements ISocialMedia {
@@ -17,10 +22,15 @@ public class SocialMeliServiceE1 implements ISocialMedia {
     User user2 = new User(756, "pepa");
     User user3 = new User(123, "maria");
 
+    @Autowired
+    UserFollowersRepository userFollowersRepository;
+
     @Override
     public void followUser(FollowIdDto followIdDto) {
         int id = followIdDto.getUserId();
         int fid = followIdDto.getUserIdToFollow();
+
+        findById(id);
 
         // Accion Follow
         listFollowed.add(new Follow(fid, user3.getUserName()));
@@ -38,6 +48,22 @@ public class SocialMeliServiceE1 implements ISocialMedia {
 
     @Override
     public void unfollowUser(FollowIdDto followIdDto) {
+
+    }
+
+
+    public boolean findById(int userId) {
+
+        List<User> users = userFollowersRepository.getUsersList()
+                .stream()
+                .filter(userDTO -> userDTO.getUserId() == userId)
+                .collect(Collectors.toList());
+
+        if(users.isEmpty()) {
+            throw new UserNotFoundException("Not Found");
+        } else {
+            return true;
+        }
 
     }
 
