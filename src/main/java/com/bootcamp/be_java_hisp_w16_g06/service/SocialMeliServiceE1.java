@@ -38,11 +38,15 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         listFollowers.add(new Follow(id, user1.getUserName()));
         user3.setFollowers(listFollowers);
 
+
+
         //listFollowed = user1.getFollowed(); //listFollowers = user3.getFollowers();
 
         System.out.println(user1.getUserName() + ": " + user1);
         System.out.println(user2.getUserName() + ": " + user2);
         System.out.println(user3.getUserName() + ": " + user3);
+        System.out.println("\n");
+
     }
 
     @Override
