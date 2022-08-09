@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5de0d4-b12b-4c24-9474-18b6e1c702ed" name="Changes" comment="" />
+    <list default="true" id="1d5de0d4-b12b-4c24-9474-18b6e1c702ed" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,16 +59,10 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w16_g06" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BeJavaHispW16G06Application (1)">
-    <configuration name="BeJavaHispW16G06Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="sprint1g06" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w16_g06.BeJavaHispW16G06Application" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="BeJavaHispW16G06Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="be_java_hisp_w16_g06" />
+      <option name="ACTIVE_PROFILES" />
+      <module name="sprint1g06" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w16_g06.BeJavaHispW16G06Application" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -82,7 +79,7 @@
       <updated>1660054354573</updated>
       <workItem from="1660054355777" duration="35000" />
       <workItem from="1660054749009" duration="597000" />
-      <workItem from="1660060353651" duration="965000" />
+      <workItem from="1660060353651" duration="1429000" />
     </task>
     <servers />
   </component>
