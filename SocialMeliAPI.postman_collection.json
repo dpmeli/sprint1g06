@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "184df4dc-0c75-4393-bbb4-4e303368cc85",
+		"_postman_id": "7fcfdf87-0a5d-49c4-8cf9-4b13599ad081",
 		"name": "SocialMeliAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,38 @@
 			"name": "TestResponseData",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 005 New Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/post",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"post"
+					]
+				}
 			},
 			"response": []
 		}

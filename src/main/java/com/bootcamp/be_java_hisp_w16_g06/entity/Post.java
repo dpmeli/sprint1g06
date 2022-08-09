@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Post {
     private Product product;
-    private int userId;
-    private int postId;
+    private Integer userId;
+    private Integer postId;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
     private int category;
