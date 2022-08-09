@@ -22,7 +22,7 @@ public class UserFollowersRepository {
     private List<User> usersList = new ArrayList<>();
 
     public UserFollowersRepository() {
-        loadUser();
+        this.usersList = loadUser();
     }
 
     private List<User> loadUser() {

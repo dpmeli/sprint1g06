@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
-import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMeliServiceE1 implements ISocialMedia {
+public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
     List<Follow> listFollowed = new ArrayList<>();
     List<Follow> listFollowers = new ArrayList<>();
@@ -51,7 +50,7 @@ public class SocialMeliServiceE1 implements ISocialMedia {
 
     }
 
-
+    @Override
     public boolean findById(int userId) {
 
         List<User> users = userFollowersRepository.getUsersList()
