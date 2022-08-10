@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9229454a-ca8f-40e6-83c6-9613205f57c7",
+		"_postman_id": "87c859d5-501a-4fe3-afdc-7b4a5e22b19c",
 		"name": "SocialMeliAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,6 +54,28 @@
 						"3",
 						"followers",
 						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 004 Followed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1/followed/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"followed",
+						"list"
 					]
 				}
 			},
