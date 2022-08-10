@@ -76,12 +76,10 @@ public class SocialMeliController {
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        try {
-            return new ResponseEntity<>(serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow)), HttpStatus.CREATED);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Response> US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+
+        serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
+        return new ResponseEntity<>(new Response("User Unfollow Successful", 200), HttpStatus.valueOf(200));
     }
 
     //US 0008: Ordenamiento alfabético ascendente y descendente
