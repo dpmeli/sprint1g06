@@ -77,10 +77,10 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
 
 
 
-    public List<ListFollowersDTO> listFollowers(Integer userId){
+    public FollowersDTO listFollowers(Integer userId){
         Optional<UserDTO> user= findById(userId).stream().findFirst();
         if(user.isPresent()){
-            return userListFollowersDTO(user.get());
+            return new FollowersDTO(user.get().getUserId(), user.get().getUserName(), userListFollowersDTO(user.get()));
         }else{
             throw new UserNotFoundException("No se encuentra el usuario");
         }
