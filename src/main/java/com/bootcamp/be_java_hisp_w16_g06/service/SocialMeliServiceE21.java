@@ -88,6 +88,7 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
             UserDTO userDto = new UserDTO();
             userDto.setUserId(user.getUserId());
             userDto.setUserName(user.getUserName());
+            userDto.setFollowed(user.getFollowed());
             userDto.setFollowers(user.getFollowers());
             return userDto;
         }).collect(Collectors.toList());
