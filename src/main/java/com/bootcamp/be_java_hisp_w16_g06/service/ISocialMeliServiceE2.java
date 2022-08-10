@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
+import com.bootcamp.be_java_hisp_w16_g06.dto.FollowedDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersCountDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 
@@ -10,4 +11,6 @@ public interface ISocialMeliServiceE2 {
     List<UserDTO> findById(int userId);
 
     FollowersCountDTO userFollowers(Integer userId);
+
+    public List<FollowedDTO> userFollowed (int userId);
 }

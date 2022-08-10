@@ -9,9 +9,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponsePostDTO {
+public class ListFollowersDTO {
 
     private int user_id;
-    private List<RequestPostDTO> posts;
+    private String user_name;
+    private List<FollowIdDto> followers;
 
+    public ListFollowersDTO(int userId, String userName, List<FollowIdDto> followers) {
+    }
 }

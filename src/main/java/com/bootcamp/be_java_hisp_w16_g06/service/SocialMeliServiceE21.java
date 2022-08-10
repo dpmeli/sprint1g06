@@ -1,8 +1,9 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
-import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersCountDTO;
-import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
+import com.bootcamp.be_java_hisp_w16_g06.dto.*;
+import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowedNotFounException;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
     @Autowired
     UserFollowersRepository repository;
 
+
+
     @Override
     public FollowersCountDTO userFollowers(Integer userId){
         Optional<UserDTO> user= findById(userId).stream().findFirst();
@@ -27,6 +30,32 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         }else{
             throw new UserNotFoundException("No se encuentra el usuario");
         }
+    }
+
+    @Override
+    public List<FollowedDTO> userFollowed (int userId){
+
+        Optional<UserDTO> user= findById(userId).stream().findFirst();
+        if(user.isPresent()){
+            return userFollowedDTO(user.get());
+        }else{
+            throw new UserNotFoundException("No se encuentra el usuario");
+        }
+
+    }
+
+    private List<FollowedDTO> userFollowedDTO (UserDTO userDTO){
+
+        List<FollowedDTO>  followedsDTO = new ArrayList<>();
+
+        if(userDTO.getFollowed() != null) {
+            for (Follow f : userDTO.getFollowed()) {
+                followedsDTO.add(new FollowedDTO(f.getId(),f.getName()));
+            }
+        }else{
+            throw new FollowedNotFounException("No tiene seguidores");
+        }
+        return followedsDTO;
     }
 
     public List<UserDTO> findById(int userId) {
@@ -57,8 +86,11 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         Integer follower = 0;
         if(userDTO.getFollowers() != null){
             follower = userDTO.getFollowers().size();
+        }else{
+            throw new UserNotFoundException("Null Followers");
         }
         return new FollowersCountDTO(userDTO.getUserId(), userDTO.getUserName(), follower);
 
     }
+
 }
