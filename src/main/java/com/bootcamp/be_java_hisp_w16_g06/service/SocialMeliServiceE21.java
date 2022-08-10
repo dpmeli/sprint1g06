@@ -58,6 +58,20 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         return followedsDTO;
     }
 
+    private List<ListFollowersDTO> userListFollowersDTO (UserDTO userDTO){
+
+        List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
+
+        if(userDTO.getFollowers() != null) {
+            for (Follow f : userDTO.getFollowers()) {
+                listFollowersDTO.add(new ListFollowersDTO(f.getId(),f.getName()));
+            }
+        }else{
+            throw new FollowedNotFounException("Null followers");
+        }
+        return listFollowersDTO;
+    }
+
     public List<UserDTO> findById(int userId) {
 
         List<User> users = repository.getUsersList()
