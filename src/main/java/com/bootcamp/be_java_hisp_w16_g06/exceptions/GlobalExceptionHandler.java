@@ -11,19 +11,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
 
-    public ResponseEntity<Response> catchUserNotFound(UserNotFoundException e){
+    public ResponseEntity<Response> catchUserNotFound(UserNotFoundException e) {
         Response exceptionResponse = new Response(e.getMessage(), 404);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(FollowedNotFounException.class)
-    public ResponseEntity<Response> catchFollowedNotFound(FollowedNotFounException e){
+    public ResponseEntity<Response> catchFollowedNotFound(FollowedNotFounException e) {
         Response exceptionResponse = new Response(e.getMessage(), 404);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(OrdenPostException.class)
-    public ResponseEntity<Response> catchOrderOPost(OrdenPostException e){
+    public ResponseEntity<Response> catchOrderOPost(OrdenPostException e) {
         Response exceptionResponse = new Response(e.getMessage(), 400);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
