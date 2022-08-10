@@ -11,8 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ListFollowersDTO {
 
-    private int userid;
-    private String name;
+    private int user_id;
+    private String user_name;
 
 
 }
