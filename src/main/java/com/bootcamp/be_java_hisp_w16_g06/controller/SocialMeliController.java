@@ -74,9 +74,10 @@ public class SocialMeliController {
 
     //US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las
     // últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-    @PostMapping("/products/followed/{userId}/list")
-    public void US006() {
-
+    @GetMapping("/products/followed/{userId}/list")
+    public ResponseEntity<ResponsePostDTO> US006(@PathVariable int userId) {
+        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
