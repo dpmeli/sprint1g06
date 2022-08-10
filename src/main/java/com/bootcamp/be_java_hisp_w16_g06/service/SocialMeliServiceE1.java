@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
+import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
 import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
@@ -22,14 +23,21 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
     int idFollower;
     int idFollowed;
     int idToUnfollow;
+
+    static final String FOLLOW_SUCCESSFUL = "Follow Successful";
+    static final String UNFOLLOW_SUCCESSFUL = "Unfollow Successful";
+    static final String ALREADY_FOLLOWING = "Already following";
+    static final String DENIED = "Follow/Unfollow Denied";
     @Autowired
     UserFollowersRepository userFollowersRepository;
 
     Map<Integer, String> followMap = new HashMap<Integer, String>();
     List<UserDTO> listUser = new ArrayList<>();
 
+    Response responseSpected ;
+
     @Override
-    public List<UserDTO> followUser(FollowIdDto followIdDto) {
+    public Response followUser(FollowIdDto followIdDto) {
 
         idFollower = followIdDto.getUserId(); //  Seguidor
         idFollowed = followIdDto.getUserIdToFollow();//  Seguido
@@ -45,6 +53,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         }
 
         List<UserDTO> newListUser = new ArrayList<>();
+        responseSpected = new Response(DENIED, 404);
         for (UserDTO userDTO : listUser) {
 
             // Siguiendo A:
@@ -61,7 +70,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                     followedList.add(following);
                     userDTO.setFollowed(followedList);
                 } else {
-                    throw new FollowException("Already following");
+                    throw new FollowException(ALREADY_FOLLOWING);
                 }
 
             }
@@ -79,20 +88,21 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                 if (userDTO.getFollowers() != null && !userDTO.getFollowers().contains(followed)) {
                     followerList.add(followed);
                     userDTO.setFollowers(followerList);
+                    responseSpected = new Response(FOLLOW_SUCCESSFUL, 200);
                 }
             }
 
-
             newListUser.add(userDTO);
-            System.out.println(userDTO.getUserName() + ": " + userDTO.getFollowed());
         }
 
         userFollowersRepository.setUsersList(listUserEntity(newListUser));
-        return listUserDTO(userFollowersRepository.getUsersList());
+        listUserDTO(userFollowersRepository.getUsersList());
+
+        return responseSpected;
     }
 
     @Override
-    public List<UserDTO> unFollowUser(FollowIdDto followIdDto) {
+    public Response unFollowUser(FollowIdDto followIdDto) {
         idFollower = followIdDto.getUserId(); //  Seguidor
         idToUnfollow = followIdDto.getUserIdToFollow();// !Seguido
 
@@ -107,6 +117,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         }
 
         List<UserDTO> newListUser = new ArrayList<>();
+        responseSpected = new Response(DENIED, 404);
         for (UserDTO userDTO : listUser) {
 
             // Quitar Siguiendo A:
@@ -122,14 +133,16 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                 Follow unfollowed = new Follow(idFollower, followMap.get(idFollower));
                 if (userDTO.getFollowers() != null || userDTO.getFollowers().isEmpty()) {
                     userDTO.getFollowers().remove(unfollowed);
+                    responseSpected = new Response(UNFOLLOW_SUCCESSFUL, 200);
                 }
             }
 
             newListUser.add(userDTO);
 
         }
+        listUserDTO(userFollowersRepository.getUsersList());
 
-        return listUserDTO(userFollowersRepository.getUsersList());
+        return responseSpected;
     }
 
     @Override

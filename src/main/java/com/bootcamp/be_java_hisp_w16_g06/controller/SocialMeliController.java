@@ -28,8 +28,8 @@ public class SocialMeliController {
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<Response> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
-        return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
+        Response responseFollow = serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
+        return new ResponseEntity<>(responseFollow, HttpStatus.valueOf(responseFollow.getStatusCode()));
     }
 
     //SocialMeliServiceE2 socialMeliServiceE2 = new SocialMeliServiceE2();
@@ -73,9 +73,8 @@ public class SocialMeliController {
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<Response> US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-
-        serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
-        return new ResponseEntity<>(new Response("User Unfollow Successful", 200), HttpStatus.valueOf(200));
+        Response responseUnfollow = serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
+        return new ResponseEntity<>(responseUnfollow, HttpStatus.valueOf(responseUnfollow.getStatusCode()));
     }
 
     //US 0008: Ordenamiento alfabético ascendente y descendente
