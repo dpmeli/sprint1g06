@@ -28,8 +28,6 @@ public class SocialMeliController {
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
-
-
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<Response> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
         serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));

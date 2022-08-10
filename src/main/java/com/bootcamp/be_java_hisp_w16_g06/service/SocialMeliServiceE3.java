@@ -32,7 +32,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
     @Override
     public void createPost(RequestPostDTO requestPostDTO) {
-        if(socialMeliServiceE1.findById(requestPostDTO.getUser_id())) {
+        if (socialMeliServiceE1.findById(requestPostDTO.getUser_id())) {
             List<Post> lstRepository = postRepository.getPosts();
             lstRepository.add(requestDTOToEntity(requestPostDTO));
             postRepository.setPosts(lstRepository);
@@ -49,9 +49,9 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
         List<Post> posts = new ArrayList<>();
 
-        for (int i=0; i < post.size(); i++) {
-            for (int j=0; j < follows.size(); j++) {
-                if (follows.get(j).getId() == post.get(i).getUserId()){
+        for (int i = 0; i < post.size(); i++) {
+            for (int j = 0; j < follows.size(); j++) {
+                if (follows.get(j).getId() == post.get(i).getUserId()) {
                     posts.add(post.get(i));
                 }
             }
@@ -67,11 +67,11 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
     public ResponsePostDTO getAllPost(int userId, String Order) {
         ResponsePostDTO dto = getAllPost(userId);
         List<RequestPostDTO> lstPostDto;
-        if(Order==null || Order.equalsIgnoreCase("date_asc")) {
+        if (Order == null || Order.equalsIgnoreCase("date_asc")) {
             lstPostDto = dto.getPosts().stream().sorted((x, y) -> x.getDate().compareTo(y.getDate())).collect(Collectors.toList());
-        }else if(Order.equalsIgnoreCase("date_desc")){
-             lstPostDto = dto.getPosts().stream().sorted((x, y) -> y.getDate().compareTo(x.getDate())).collect(Collectors.toList());
-        }else
+        } else if (Order.equalsIgnoreCase("date_desc")) {
+            lstPostDto = dto.getPosts().stream().sorted((x, y) -> y.getDate().compareTo(x.getDate())).collect(Collectors.toList());
+        } else
             throw new OrdenPostException("No se pudo ordenar la lista");
 
         dto.setPosts(lstPostDto);
@@ -87,7 +87,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
         return new Post(product, dto.getUser_id(), postRepository.getCorrelativo(), localDate, dto.getCategory(), dto.getPrice(), false, 0d);
     }
 
-    private List<UserDTO> listUserDTO (List<User> Users) {
+    private List<UserDTO> listUserDTO(List<User> Users) {
 
         return Users.stream().map(user -> {
             UserDTO userDto = new UserDTO();
@@ -100,7 +100,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
     }
 
-    private ResponsePostDTO responsePostDTO (List<Post> posts, int userId) {
+    private ResponsePostDTO responsePostDTO(List<Post> posts, int userId) {
 
         ResponsePostDTO responsePostDTO = new ResponsePostDTO();
         List<RequestPostDTO> requestPostDTOS = new ArrayList<>();

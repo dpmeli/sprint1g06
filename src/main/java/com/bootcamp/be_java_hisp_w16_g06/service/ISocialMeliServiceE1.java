@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ISocialMeliServiceE1 {
     List<UserDTO> followUser(FollowIdDto followIdDto);
+
     List<UserDTO> unFollowUser(FollowIdDto followIdDto);
+
     boolean findById(int userId);
 
 }

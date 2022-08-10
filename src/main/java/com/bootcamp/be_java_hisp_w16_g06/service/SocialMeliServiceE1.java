@@ -9,7 +9,10 @@ import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,13 +77,12 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
             }
 
             newListUser.add(userDTO);
-
+            System.out.println(userDTO.getUserName() + ": " + userDTO.getFollowed());
         }
 
         userFollowersRepository.setUsersList(listUserEntity(newListUser));
         return listUserDTO(userFollowersRepository.getUsersList());
     }
-
 
     @Override
     public List<UserDTO> unFollowUser(FollowIdDto followIdDto) {
@@ -122,7 +124,6 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
         return listUserDTO(userFollowersRepository.getUsersList());
     }
-
 
     @Override
     public boolean findById(int userId) {
