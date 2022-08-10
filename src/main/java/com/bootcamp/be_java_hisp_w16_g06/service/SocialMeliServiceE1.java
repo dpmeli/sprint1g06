@@ -44,22 +44,55 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
 
         for (UserDTO userDTO : listUser) {
-            List<Follow> followedList = new ArrayList<>();
 
+            List<Follow> followedList = new ArrayList<>();
             if (idFollower == userDTO.getUserId()) {
-                Follow followeder = new Follow(idFollowed, followMap.get(idFollowed));
-                if (userDTO.getFollowed() != null) { // importatnte
+                Follow following = new Follow(idFollowed, followMap.get(idFollowed));
+                if (userDTO.getFollowed() != null) {
                     followedList = userDTO.getFollowed();
                 }
-                followedList.add(followeder);
+
                 userDTO.setFollowed(followedList);
+                if (userDTO.getFollowed() != null && !userDTO.getFollowed().contains(following)) {
+                    followedList.add(following);
+                    userDTO.setFollowed(followedList);
+                }
             }
-            // Pendiente Validar () - Daniel
-            // Follower - Tomas
-            // Quemar en repository
+
+            List<Follow> followerList = new ArrayList<>();
+            if (idFollowed == userDTO.getUserId()) {
+                Follow followed = new Follow(idFollower, followMap.get(idFollower));
+                if (userDTO.getFollowers() != null) {
+                    followerList = userDTO.getFollowers();
+                }
+
+                userDTO.setFollowers(followerList);
+                if (userDTO.getFollowers() != null && !userDTO.getFollowers().contains(followed)) {
+                    followerList.add(followed);
+                    userDTO.setFollowers(followerList);
+                }
+            }
+            System.out.println(userDTO.getUserName()
+                    + ": \nseguido por: " + userDTO.getFollowers()
+                    + "\nsiguiendo a: " + userDTO.getFollowed());
         }
 
         return listUserDTO(userFollowersRepository.getUsersList());
+    }
+
+    private void addFollower(int idFollowed, int idFollower) {
+        for (UserDTO userDTO : listUser) {
+            List<Follow> followerList = new ArrayList<>();
+
+            if (idFollowed == userDTO.getUserId()) {
+                Follow listFollowers = new Follow(idFollower, followMap.get(idFollower));
+                if (userDTO.getFollowers() != null) { // importatnte
+                    followerList = userDTO.getFollowers();
+                }
+                followerList.add(listFollowers);
+                userDTO.setFollowed(followerList);
+            }
+        }
     }
 
     private String getNameUser(List<UserDTO> listaUser, int id) {
@@ -131,6 +164,5 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         }).collect(Collectors.toList());
 
     }
-
 
 }
