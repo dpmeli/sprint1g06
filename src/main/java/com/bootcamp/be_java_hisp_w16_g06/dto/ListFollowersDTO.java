@@ -13,8 +13,6 @@ public class ListFollowersDTO {
 
     private int user_id;
     private String user_name;
-    private List<FollowIdDto> followers;
 
-    public ListFollowersDTO(int userId, String userName, List<FollowIdDto> followers) {
-    }
+
 }

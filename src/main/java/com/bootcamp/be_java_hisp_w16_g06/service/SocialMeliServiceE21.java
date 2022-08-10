@@ -59,6 +59,31 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         return followedsDTO;
     }
 
+
+
+    public List<ListFollowersDTO> listFollowers(Integer userId){
+        Optional<UserDTO> user= findById(userId).stream().findFirst();
+        if(user.isPresent()){
+            return userListFollowersDTO(user.get());
+        }else{
+            throw new UserNotFoundException("No se encuentra el usuario");
+        }
+    }
+
+    private List<ListFollowersDTO> userListFollowersDTO (UserDTO userDTO){
+
+        List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
+
+        if(userDTO.getFollowers() != null) {
+            for (Follow f : userDTO.getFollowers()) {
+                listFollowersDTO.add(new ListFollowersDTO(f.getId(),f.getName()));
+            }
+        }else{
+            throw new FollowedNotFounException("Null followers");
+        }
+        return listFollowersDTO;
+    }
+
     public List<UserDTO> findById(int userId) {
 
         List<User> users = repository.getUsersList()
@@ -75,6 +100,7 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
             UserDTO userDto = new UserDTO();
             userDto.setUserId(user.getUserId());
             userDto.setUserName(user.getUserName());
+            userDto.setFollowed(user.getFollowed());
             userDto.setFollowers(user.getFollowers());
             return userDto;
         }).collect(Collectors.toList());
@@ -86,8 +112,6 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         Integer follower = 0;
         if(userDTO.getFollowers() != null){
             follower = userDTO.getFollowers().size();
-        }else{
-            throw new UserNotFoundException("Null Followers");
         }
         return new FollowersCountDTO(userDTO.getUserId(), userDTO.getUserName(), follower);
 

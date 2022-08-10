@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Post;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Product;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.OrdenPostException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,21 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
         return responsePostDTO;
 
+    }
+
+    @Override
+    public ResponsePostDTO getAllPost(int userId, String Order) {
+        ResponsePostDTO dto = getAllPost(userId);
+        List<RequestPostDTO> lstPostDto;
+        if(Order.equalsIgnoreCase("date_asc")) {
+            lstPostDto = dto.getPosts().stream().sorted((x, y) -> x.getDate().compareTo(y.getDate())).collect(Collectors.toList());
+        }else if(Order.equalsIgnoreCase("date_desc")){
+             lstPostDto = dto.getPosts().stream().sorted((x, y) -> y.getDate().compareTo(x.getDate())).collect(Collectors.toList());
+        }else
+            throw new OrdenPostException("No se pudo ordenar la lista");
+
+        dto.setPosts(lstPostDto);
+        return dto;
     }
 
     private Post requestDTOToEntity(RequestPostDTO dto) {

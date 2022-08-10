@@ -54,8 +54,8 @@ public class SocialMeliController {
 
     //US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
     @GetMapping("/users/{userId}/followers/list")
-    public void US003() {
-
+    public ResponseEntity<List<ListFollowersDTO>> US003(@PathVariable int userId) {
+        return new ResponseEntity<List<ListFollowersDTO>>(service2.listFollowers(userId), HttpStatus.OK);
     }
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
@@ -101,9 +101,10 @@ public class SocialMeliController {
     //     products/followed/{userId}/list?order=date_asc
     //     products/followed/{userId}/list?order=date_desc
     //  *Nota: Este ordenamiento aplica solo para la US-006
-    @GetMapping("US009") //Cambiar Endpoint
-    public void US009() {
-
+    @GetMapping("products/followed/{userId}/list?order={order}") //Cambiar Endpoint
+    public ResponseEntity<ResponsePostDTO> US009(@PathVariable int userID, @RequestParam String order) {
+        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userID, order);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /* B_Requerimientos_incrementales */
