@@ -32,6 +32,7 @@ public class SocialMeliController {
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<Response> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
         return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
     }
 
