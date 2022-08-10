@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
+    int idFollower, idFollowed, idToUnfollow;
     @Autowired
     UserFollowersRepository userFollowersRepository;
     @Autowired
@@ -28,9 +29,8 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
     @Override
     public List<UserDTO> followUser(FollowIdDto followIdDto) {
-
         int idFollower = followIdDto.getUserId();           //  Seguidor
-        int idFollowed = followIdDto.getUserIdToFollow();   //  Seguido
+        idFollowed = followIdDto.getUserIdToFollow();   //  Seguido
 
         findById(idFollower);
         findById(idFollowed);
@@ -46,7 +46,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
             // Siguiendo A:
             List<Follow> followedList = new ArrayList<>();
-            if (idFollower == userDTO.getUserId()) {
+            if (idFollower == userDTO.getUserId() && idFollowed != userDTO.getUserId()) {
                 Follow following = new Follow(idFollowed, followMap.get(idFollowed));
                 if (userDTO.getFollowed() != null) {
                     followedList = userDTO.getFollowed();
@@ -61,7 +61,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
             // Seguido Por:
             List<Follow> followerList = new ArrayList<>();
-            if (idFollowed == userDTO.getUserId()) {
+            if (idFollowed == userDTO.getUserId() && idFollower != userDTO.getUserId()) {
                 Follow followed = new Follow(idFollower, followMap.get(idFollower));
                 if (userDTO.getFollowers() != null) {
                     followerList = userDTO.getFollowers();
@@ -80,6 +80,50 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
         return listUserDTO(userFollowersRepository.getUsersList());
     }
+
+    @Override
+    public List<UserDTO> unFollowUser(FollowIdDto followIdDto) {
+        idFollower = followIdDto.getUserId();               //  Seguidor
+        idToUnfollow = followIdDto.getUserIdToFollow();     //  !Seguido
+
+        findById(idFollower);
+        findById(idToUnfollow);
+
+        if (followMap.isEmpty()) {
+            listUser = listUserDTO(userFollowersRepository.getUsersList());
+            for (UserDTO follow : listUser) {
+                followMap.put(follow.getUserId(), follow.getUserName());
+            }
+        }
+
+        for (UserDTO userDTO : listUser) {
+            // Quitar Siguiendo A:
+            List<Follow> followedList = new ArrayList<>();
+            if (idFollower == userDTO.getUserId() && idToUnfollow != userDTO.getUserId()) {
+                Follow unfollowing = new Follow(idToUnfollow, followMap.get(idToUnfollow));
+                if (userDTO.getFollowed() != null || userDTO.getFollowed().isEmpty()) {
+                    followedList = userDTO.getFollowed();
+                    userDTO.getFollowed().remove(unfollowing);
+                }
+            }
+
+            // Quitar Seguido Por:
+            List<Follow> followerList = new ArrayList<>();
+            if (idToUnfollow == userDTO.getUserId() && idFollower != userDTO.getUserId()) {
+                Follow unfollowed = new Follow(idFollower, followMap.get(idFollower));
+                if (userDTO.getFollowers() != null || userDTO.getFollowers().isEmpty()) {
+                    followedList = userDTO.getFollowed();
+                    userDTO.getFollowers().remove(unfollowed);
+                }
+            }
+            System.out.println(userDTO.getUserName()
+                    + ": \nseguido por: " + userDTO.getFollowers()
+                    + "\nsiguiendo a: " + userDTO.getFollowed());
+        }
+
+        return listUserDTO(userFollowersRepository.getUsersList());
+    }
+
 
     private String getNameUser(List<UserDTO> listaUser, int id) {
 
