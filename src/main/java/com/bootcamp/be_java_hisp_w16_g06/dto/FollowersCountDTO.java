@@ -12,5 +12,4 @@ public class FollowersCountDTO {
     private int user_id;
     private String user_name;
     private int followers_count;
-
 }
