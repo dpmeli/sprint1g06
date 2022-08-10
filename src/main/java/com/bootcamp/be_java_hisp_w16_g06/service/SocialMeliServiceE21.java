@@ -76,7 +76,7 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
 
         if(userDTO.getFollowers() != null) {
             for (Follow f : userDTO.getFollowers()) {
-                listFollowersDTO.add(new ListFollowersDTO(f.getId(),f.getName()));
+                listFollowersDTO.add(new ListFollowersDTO(f.getId(), f.getName()));
             }
         }else{
             throw new FollowedNotFounException("Null followers");

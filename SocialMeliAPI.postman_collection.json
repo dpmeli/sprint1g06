@@ -19,19 +19,19 @@
 		{
 			"name": "US 001 Follow",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/123/follow/234",
+					"raw": "localhost:8080/users/1/follow/3",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"users",
-						"123",
+						"1",
 						"follow",
-						"234"
+						"3"
 					]
 				}
 			},
@@ -104,6 +104,27 @@
 					"path": [
 						"products",
 						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 007 Unfollow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1/follow/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"follow",
+						"3"
 					]
 				}
 			},
