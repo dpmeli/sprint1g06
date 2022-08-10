@@ -16,4 +16,11 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(FollowedNotFounException.class)
+    public ResponseEntity<Response> catchFollowedNotFound(FollowedNotFounException e){
+        Response exceptionBlogDTO = new Response(e.getMessage(), 404);
+        return new ResponseEntity<>(exceptionBlogDTO, HttpStatus.NOT_FOUND);
+
+    }
+
 }
