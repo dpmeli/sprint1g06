@@ -15,5 +15,5 @@ public class FollowersDTO {
 
     private int user_id;
     private String user_name;
-    private List<ListFollowersDTO> followed;
+    private List<ListFollowersDTO> followers;
 }

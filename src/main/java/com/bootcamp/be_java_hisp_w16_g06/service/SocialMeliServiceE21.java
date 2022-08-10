@@ -86,6 +86,23 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         }
     }
 
+    public FollowersDTO userFollowersOrder (int userId,String order){
+        FollowersDTO dto = listFollowers(userId);
+        List<ListFollowersDTO> followersOrder;
+
+        if(order==null || order.equalsIgnoreCase("name_asc")){
+            followersOrder = dto.getFollowers().stream().sorted((x,y)->x.getUser_name().compareTo(y.getUser_name())).collect(Collectors.toList());
+        }else if(order.equalsIgnoreCase("name_desc")){
+            followersOrder = dto.getFollowers().stream().sorted((x,y)->y.getUser_name().compareTo(x.getUser_name())).collect(Collectors.toList());
+        }else{
+            throw new FollowedNotFounException("La forma de ordenado no existe");
+        }
+        dto.setFollowers(followersOrder);
+
+        return dto;
+    }
+
+
     private List<ListFollowersDTO> userListFollowersDTO (UserDTO userDTO){
 
         List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
