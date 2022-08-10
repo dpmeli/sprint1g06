@@ -101,9 +101,10 @@ public class SocialMeliController {
     //     products/followed/{userId}/list?order=date_asc
     //     products/followed/{userId}/list?order=date_desc
     //  *Nota: Este ordenamiento aplica solo para la US-006
-    @GetMapping("US009") //Cambiar Endpoint
-    public void US009() {
-
+    @GetMapping("products/followed/{userId}/list?order={order}") //Cambiar Endpoint
+    public ResponseEntity<ResponsePostDTO> US009(@PathVariable int userID, @RequestParam String order) {
+        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userID, order);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /* B_Requerimientos_incrementales */

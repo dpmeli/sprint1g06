@@ -10,5 +10,6 @@ public interface ISocialMeliServiceE3 {
     void createPost(RequestPostDTO requestPostDTO);
 
     ResponsePostDTO getAllPost(int userId);
+    ResponsePostDTO getAllPost(int userId, String Order);
 
 }
