@@ -31,18 +31,11 @@ public class SocialMeliController {
 
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<List<UserDTO>> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        try {
-            //serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
-            //return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
-            return new ResponseEntity<>(serviceE1.followUser(new FollowIdDto(userId, userIdToFollow)), HttpStatus.CREATED);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Response> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
     }
 
     //SocialMeliServiceE2 socialMeliServiceE2 = new SocialMeliServiceE2();
-
 
 
     //US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
@@ -60,8 +53,8 @@ public class SocialMeliController {
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
     @GetMapping("/users/{userId}/followed/list")
-    public ResponseEntity<FollowedDTO> US004(@PathVariable int userId) {
-        return new ResponseEntity<FollowedDTO>(service2.userFollowed(userId), HttpStatus.OK);
+    public ResponseEntity<FollowedDTO> US004(@PathVariable int userId, @RequestParam(required = false) String order) {
+        return new ResponseEntity<FollowedDTO>(service2.userFollowed(userId, order), HttpStatus.OK);
     }
 
     //US 0005: Dar de alta una nueva publicación
@@ -75,8 +68,8 @@ public class SocialMeliController {
     //US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las
     // últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
     @GetMapping("/products/followed/{userId}/list")
-    public ResponseEntity<ResponsePostDTO> US006(@PathVariable int userId) {
-        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userId);
+    public ResponseEntity<ResponsePostDTO> US006(@PathVariable int userId, @RequestParam(required = false) String order) {
+        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userId, order);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -96,24 +89,13 @@ public class SocialMeliController {
     //      users/{UserID}/followed/list?order=name_asc
     //      users/{UserID}/followed/list?order=name_desc
     //  *Nota: Este ordenamiento aplica solo para US-003 y US-004.
-    @GetMapping("/users/{UserID}/followed/list?order={order}") //Cambiar Endpoint
-    public ResponseEntity<FollowedDTO> US008A(@PathVariable int userId, @RequestParam String order) {
-        return new ResponseEntity<FollowedDTO>(service2.userFollowed(userId,order), HttpStatus.OK);
-    }
-    @GetMapping("/US008") //Cambiar Endpoint
-    public void US008B() {
 
-    }
 
     //US 0009: Ordenamiento por fecha ascendente y descendente
     //     products/followed/{userId}/list?order=date_asc
     //     products/followed/{userId}/list?order=date_desc
     //  *Nota: Este ordenamiento aplica solo para la US-006
-    @GetMapping("products/followed/{userId}/list?order={order}") //Cambiar Endpoint
-    public ResponseEntity<ResponsePostDTO> US009(@PathVariable int userID, @RequestParam String order) {
-        ResponsePostDTO response = socialMaMeliServiceE3.getAllPost(userID, order);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+
 
     /* B_Requerimientos_incrementales */
 

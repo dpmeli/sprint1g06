@@ -65,7 +65,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
     public ResponsePostDTO getAllPost(int userId, String Order) {
         ResponsePostDTO dto = getAllPost(userId);
         List<RequestPostDTO> lstPostDto;
-        if(Order.equalsIgnoreCase("date_asc")) {
+        if(Order==null || Order.equalsIgnoreCase("date_asc")) {
             lstPostDto = dto.getPosts().stream().sorted((x, y) -> x.getDate().compareTo(y.getDate())).collect(Collectors.toList());
         }else if(Order.equalsIgnoreCase("date_desc")){
              lstPostDto = dto.getPosts().stream().sorted((x, y) -> y.getDate().compareTo(x.getDate())).collect(Collectors.toList());

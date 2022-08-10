@@ -49,7 +49,7 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         FollowedDTO dto = userFollowed(userId);
         List<ListFollowedDTO> followed;
 
-        if(order.equalsIgnoreCase("name_asc")){
+        if(order==null || order.equalsIgnoreCase("name_asc")){
             followed = dto.getFollowed().stream().sorted((x,y)->x.getUser_name().compareTo(y.getUser_name())).collect(Collectors.toList());
         }else if(order.equalsIgnoreCase("name_desc")){
             followed = dto.getFollowed().stream().sorted((x,y)->y.getUser_name().compareTo(x.getUser_name())).collect(Collectors.toList());
