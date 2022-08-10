@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
 import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowException;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
             // Siguiendo A:
             List<Follow> followedList = new ArrayList<>();
             if (idFollower == userDTO.getUserId() && idFollowed != userDTO.getUserId()) {
+
                 Follow following = new Follow(idFollowed, followMap.get(idFollowed));
                 if (userDTO.getFollowed() != null) {
                     followedList = userDTO.getFollowed();
@@ -58,12 +60,16 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                 if (userDTO.getFollowed() != null && !userDTO.getFollowed().contains(following)) {
                     followedList.add(following);
                     userDTO.setFollowed(followedList);
+                } else {
+                    throw new FollowException("Already following");
                 }
+
             }
 
             // Seguido Por:
             List<Follow> followerList = new ArrayList<>();
             if (idFollowed == userDTO.getUserId() && idFollower != userDTO.getUserId()) {
+
                 Follow followed = new Follow(idFollower, followMap.get(idFollower));
                 if (userDTO.getFollowers() != null) {
                     followerList = userDTO.getFollowers();
@@ -75,6 +81,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                     userDTO.setFollowers(followerList);
                 }
             }
+
 
             newListUser.add(userDTO);
             System.out.println(userDTO.getUserName() + ": " + userDTO.getFollowed());

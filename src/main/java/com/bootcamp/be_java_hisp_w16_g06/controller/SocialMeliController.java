@@ -46,8 +46,8 @@ public class SocialMeliController {
 
     //US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity<List<ListFollowersDTO>> US003(@PathVariable int userId) {
-        return new ResponseEntity<List<ListFollowersDTO>>(service2.listFollowers(userId), HttpStatus.OK);
+    public ResponseEntity<FollowersDTO> US003(@PathVariable int userId, @RequestParam(required = false) String order) {
+        return new ResponseEntity<FollowersDTO>(service2.userFollowersOrder(userId, order), HttpStatus.OK);
     }
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
@@ -74,12 +74,10 @@ public class SocialMeliController {
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        try {
-            return new ResponseEntity<>(serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow)), HttpStatus.CREATED);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Response> US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+
+        serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
+        return new ResponseEntity<>(new Response("User Unfollow Successful", 200), HttpStatus.valueOf(200));
     }
 
     //US 0008: Ordenamiento alfabético ascendente y descendente
