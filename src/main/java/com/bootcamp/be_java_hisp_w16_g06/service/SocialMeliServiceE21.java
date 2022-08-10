@@ -54,7 +54,7 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
                 followedsDTO.add(new ListFollowedDTO(f.getId(),f.getName()));
             }
         }else{
-            throw new FollowedNotFounException("No tiene seguidores");
+            throw new FollowedNotFounException("No sigue a ningun vendedor");
         }
         return followedsDTO;
     }
