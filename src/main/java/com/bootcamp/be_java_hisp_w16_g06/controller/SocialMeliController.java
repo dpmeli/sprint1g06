@@ -54,8 +54,8 @@ public class SocialMeliController {
 
     //US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
     @GetMapping("/users/{userId}/followers/list")
-    public void US003() {
-
+    public ResponseEntity<List<ListFollowersDTO>> US003(@PathVariable int userId) {
+        return new ResponseEntity<List<ListFollowersDTO>>(service2.listFollowers(userId), HttpStatus.OK);
     }
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)

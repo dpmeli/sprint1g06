@@ -58,6 +58,17 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         return followedsDTO;
     }
 
+
+
+    public List<ListFollowersDTO> listFollowers(Integer userId){
+        Optional<UserDTO> user= findById(userId).stream().findFirst();
+        if(user.isPresent()){
+            return userListFollowersDTO(user.get());
+        }else{
+            throw new UserNotFoundException("No se encuentra el usuario");
+        }
+    }
+
     private List<ListFollowersDTO> userListFollowersDTO (UserDTO userDTO){
 
         List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
@@ -100,8 +111,6 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         Integer follower = 0;
         if(userDTO.getFollowers() != null){
             follower = userDTO.getFollowers().size();
-        }else{
-            throw new UserNotFoundException("Null Followers");
         }
         return new FollowersCountDTO(userDTO.getUserId(), userDTO.getUserName(), follower);
 
