@@ -26,78 +26,116 @@
   },
   {
     "userId": 2,
-    "userName": "Boris"
+    "userName": "Boris",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 3,
-    "userName": "Camilo"
+    "userName": "Camilo",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 4,
-    "userName": "Daniel"
+    "userName": "Daniel",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 5,
-    "userName": "Elquin"
+    "userName": "Elquin",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 6,
-    "userName": "Fernanda"
+    "userName": "Fernanda",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 7,
-    "userName": "Gabriela"
+    "userName": "Gabriela",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 8,
-    "userName": "Hector"
+    "userName": "Hector",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 9,
-    "userName": "Irene"
+    "userName": "Irene",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 10,
-    "userName": "Ismael"
+    "userName": "Ismael",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 11,
-    "userName": "Juan"
+    "userName": "Juan",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 12,
-    "userName": "Jesus"
+    "userName": "Jesus",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 13,
-    "userName": "Karen"
+    "userName": "Karen",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 14,
-    "userName": "Kelly"
+    "userName": "Kelly",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 15,
-    "userName": "Kimberly"
+    "userName": "Kimberly",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 16,
-    "userName": "Luisa"
+    "userName": "Luisa",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 17,
-    "userName": "Leandro"
+    "userName": "Leandro",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 18,
-    "userName": "Manuel"
+    "userName": "Manuel",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 19,
-    "userName": "Manuela"
+    "userName": "Manuela",
+    "followed": [],
+    "followers": []
   },
   {
     "userId": 20,
-    "userName": "Juan"
+    "userName": "Juan",
+    "followed": [],
+    "followers": []
   }
 ]

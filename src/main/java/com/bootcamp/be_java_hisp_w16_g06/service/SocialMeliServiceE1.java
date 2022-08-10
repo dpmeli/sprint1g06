@@ -22,10 +22,6 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
     SocialMeliServiceE21 socialMeliServiceE21Service;
     Map<Integer, String> followMap = new HashMap<Integer, String>();
     List<UserDTO> listUser = new ArrayList<>();
-    List<Follow> listFollowed = new ArrayList<Follow>();
-    List<Follow> listFollowers;
-    String nameFollower = "";
-    String nameFollowed = "";
 
     @Override
     public List<UserDTO> followUser(FollowIdDto followIdDto) {
