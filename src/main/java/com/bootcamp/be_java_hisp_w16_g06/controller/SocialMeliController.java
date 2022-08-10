@@ -96,8 +96,12 @@ public class SocialMeliController {
     //      users/{UserID}/followed/list?order=name_asc
     //      users/{UserID}/followed/list?order=name_desc
     //  *Nota: Este ordenamiento aplica solo para US-003 y US-004.
+    @GetMapping("/users/{UserID}/followed/list?order={order}") //Cambiar Endpoint
+    public ResponseEntity<FollowedDTO> US008A(@PathVariable int userId, @RequestParam String order) {
+        return new ResponseEntity<FollowedDTO>(service2.userFollowed(userId,order), HttpStatus.OK);
+    }
     @GetMapping("/US008") //Cambiar Endpoint
-    public void US008() {
+    public void US008B() {
 
     }
 
