@@ -43,14 +43,20 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
     public ResponsePostDTO getAllPost(int userId) {
 
         List<Post> post = postRepository.getPosts();
-        List<UserDTO> users = listUserDTO(userFollowersRepository.getUsersList().stream().filter(x -> (x.getUserId() == userId && x.getFollowed() != null)).collect(Collectors.toList()));
+        List<UserDTO> users = listUserDTO(userFollowersRepository.getUsersList().stream().filter(x -> (x.getUserId() == userId)).collect(Collectors.toList()));
+
+        List<Follow> follows = new ArrayList<>();
+
+        for (UserDTO user : users) {
+            follows = user.getFollowed();
+        }
 
         List<Post> posts = new ArrayList<>();
 
         for (int i=0; i < post.size(); i++) {
-            for (int j=0; j < users.size(); j++) {
-                if (post.get(j).getUserId().equals(users.get(i).getFollowed())){
-                    posts.add(post.get(j));
+            for (int j=0; j < follows.size(); j++) {
+                if (follows.get(j).getId() == post.get(i).getUserId()){
+                    posts.add(post.get(i));
                 }
             }
         }
@@ -100,14 +106,14 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
     private ResponsePostDTO responsePostDTO (List<Post> posts, int userId) {
 
-        ProductDTO productDTO = new ProductDTO();
         ResponsePostDTO responsePostDTO = new ResponsePostDTO();
-
         List<RequestPostDTO> requestPostDTOS = new ArrayList<>();
-        RequestPostDTO requestPostDTO = new RequestPostDTO();
 
-        responsePostDTO.setUser_id(userId);
+        responsePostDTO.setUserId(userId);
         for (Post post : posts) {
+
+            RequestPostDTO requestPostDTO = new RequestPostDTO();
+            ProductDTO productDTO = new ProductDTO();
 
             requestPostDTO.setCategory(post.getCategory());
             requestPostDTO.setDate(post.getDate().toString());
@@ -125,10 +131,12 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
 
             requestPostDTOS.add(requestPostDTO);
 
-            responsePostDTO.setPosts(requestPostDTOS);
         }
 
+        responsePostDTO.setPosts(requestPostDTOS);
+
         return responsePostDTO;
+
 
     }
 }

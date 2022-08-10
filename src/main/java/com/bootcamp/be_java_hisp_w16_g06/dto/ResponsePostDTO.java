@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ResponsePostDTO {
 
-    private int user_id;
+    private int userId;
     private List<RequestPostDTO> posts;
 
 }
