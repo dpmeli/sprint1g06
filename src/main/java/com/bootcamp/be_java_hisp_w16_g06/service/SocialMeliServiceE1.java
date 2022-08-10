@@ -42,9 +42,9 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
             }
         }
 
-
         for (UserDTO userDTO : listUser) {
 
+            // Siguiendo A:
             List<Follow> followedList = new ArrayList<>();
             if (idFollower == userDTO.getUserId()) {
                 Follow following = new Follow(idFollowed, followMap.get(idFollowed));
@@ -59,6 +59,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                 }
             }
 
+            // Seguido Por:
             List<Follow> followerList = new ArrayList<>();
             if (idFollowed == userDTO.getUserId()) {
                 Follow followed = new Follow(idFollower, followMap.get(idFollower));
@@ -78,21 +79,6 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         }
 
         return listUserDTO(userFollowersRepository.getUsersList());
-    }
-
-    private void addFollower(int idFollowed, int idFollower) {
-        for (UserDTO userDTO : listUser) {
-            List<Follow> followerList = new ArrayList<>();
-
-            if (idFollowed == userDTO.getUserId()) {
-                Follow listFollowers = new Follow(idFollower, followMap.get(idFollower));
-                if (userDTO.getFollowers() != null) { // importatnte
-                    followerList = userDTO.getFollowers();
-                }
-                followerList.add(listFollowers);
-                userDTO.setFollowed(followerList);
-            }
-        }
     }
 
     private String getNameUser(List<UserDTO> listaUser, int id) {
