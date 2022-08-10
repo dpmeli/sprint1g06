@@ -32,25 +32,26 @@ public class SocialMeliServiceE21 implements ISocialMeliServiceE2{
         }
     }
 
+    // Recibe del controller el id del usuario y valida si es usuario y llama al metodo de obtener los seguidores
     @Override
-    public List<FollowedDTO> userFollowed (int userId){
+    public FollowedDTO userFollowed (int userId){
 
         Optional<UserDTO> user= findById(userId).stream().findFirst();
         if(user.isPresent()){
-            return userFollowedDTO(user.get());
+            return new FollowedDTO(user.get().getUserId(),user.get().getUserName(),userFollowedDTO(user.get()));
         }else{
             throw new UserNotFoundException("No se encuentra el usuario");
         }
 
     }
+    // Recibe un userDTO y obtiene la lista de seguidores, y si no es null, devuelve una lista de FollowedDTO con el id y el nombre de la lista de seguidores
+    private List<ListFollowedDTO> userFollowedDTO (UserDTO userDTO){
 
-    private List<FollowedDTO> userFollowedDTO (UserDTO userDTO){
-
-        List<FollowedDTO>  followedsDTO = new ArrayList<>();
+        List<ListFollowedDTO>  followedsDTO = new ArrayList<>();
 
         if(userDTO.getFollowed() != null) {
             for (Follow f : userDTO.getFollowed()) {
-                followedsDTO.add(new FollowedDTO(f.getId(),f.getName()));
+                followedsDTO.add(new ListFollowedDTO(f.getId(),f.getName()));
             }
         }else{
             throw new FollowedNotFounException("No tiene seguidores");

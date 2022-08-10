@@ -5,15 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FollowedDTO {
+public class ListFollowedDTO {
 
     private int user_id;
     private String user_name;
-    private List<ListFollowedDTO> followed;
 }
