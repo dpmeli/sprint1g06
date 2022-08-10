@@ -15,18 +15,20 @@ import java.util.stream.Collectors;
 @Service
 public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
 
-    int idFollower, idFollowed, idToUnfollow;
+    int idFollower;
+    int idFollowed;
+    int idToUnfollow;
     @Autowired
     UserFollowersRepository userFollowersRepository;
-    @Autowired
-    SocialMeliServiceE21 socialMeliServiceE21Service;
+
     Map<Integer, String> followMap = new HashMap<Integer, String>();
     List<UserDTO> listUser = new ArrayList<>();
 
     @Override
     public List<UserDTO> followUser(FollowIdDto followIdDto) {
-        int idFollower = followIdDto.getUserId();           //  Seguidor
-        idFollowed = followIdDto.getUserIdToFollow();   //  Seguido
+
+        idFollower = followIdDto.getUserId(); //  Seguidor
+        idFollowed = followIdDto.getUserIdToFollow();//  Seguido
 
         findById(idFollower);
         findById(idFollowed);
@@ -38,6 +40,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
             }
         }
 
+        List<UserDTO> newListUser = new ArrayList<>();
         for (UserDTO userDTO : listUser) {
 
             // Siguiendo A:
@@ -69,18 +72,20 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
                     userDTO.setFollowers(followerList);
                 }
             }
-            System.out.println(userDTO.getUserName()
-                    + ": \nseguido por: " + userDTO.getFollowers()
-                    + "\nsiguiendo a: " + userDTO.getFollowed());
+
+            newListUser.add(userDTO);
+
         }
 
+        userFollowersRepository.setUsersList(listUserEntity(newListUser));
         return listUserDTO(userFollowersRepository.getUsersList());
     }
 
+
     @Override
     public List<UserDTO> unFollowUser(FollowIdDto followIdDto) {
-        idFollower = followIdDto.getUserId();               //  Seguidor
-        idToUnfollow = followIdDto.getUserIdToFollow();     //  !Seguido
+        idFollower = followIdDto.getUserId(); //  Seguidor
+        idToUnfollow = followIdDto.getUserIdToFollow();// !Seguido
 
         findById(idFollower);
         findById(idToUnfollow);
@@ -92,61 +97,32 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
             }
         }
 
+        List<UserDTO> newListUser = new ArrayList<>();
         for (UserDTO userDTO : listUser) {
+
             // Quitar Siguiendo A:
-            List<Follow> followedList = new ArrayList<>();
             if (idFollower == userDTO.getUserId() && idToUnfollow != userDTO.getUserId()) {
                 Follow unfollowing = new Follow(idToUnfollow, followMap.get(idToUnfollow));
                 if (userDTO.getFollowed() != null || userDTO.getFollowed().isEmpty()) {
-                    followedList = userDTO.getFollowed();
                     userDTO.getFollowed().remove(unfollowing);
                 }
             }
 
             // Quitar Seguido Por:
-            List<Follow> followerList = new ArrayList<>();
             if (idToUnfollow == userDTO.getUserId() && idFollower != userDTO.getUserId()) {
                 Follow unfollowed = new Follow(idFollower, followMap.get(idFollower));
                 if (userDTO.getFollowers() != null || userDTO.getFollowers().isEmpty()) {
-                    followedList = userDTO.getFollowed();
                     userDTO.getFollowers().remove(unfollowed);
                 }
             }
-            System.out.println(userDTO.getUserName()
-                    + ": \nseguido por: " + userDTO.getFollowers()
-                    + "\nsiguiendo a: " + userDTO.getFollowed());
+
+            newListUser.add(userDTO);
+
         }
 
         return listUserDTO(userFollowersRepository.getUsersList());
     }
 
-
-    private String getNameUser(List<UserDTO> listaUser, int id) {
-
-        for (UserDTO userDTO : listaUser) {
-            if (userDTO.getUserId() == id) {
-                return userDTO.getUserName();
-            }
-        }
-
-        return null;
-    }
-
-    private List<Follow> getListFollow(int idUser, List<UserDTO> listaUser) {
-
-        return listaUser.stream().filter(y -> y.getUserId() == idUser).map(x -> {
-            Follow follow = new Follow();
-            follow.setId(x.getUserId());
-            follow.setName(x.getUserName());
-            return follow;
-        }).collect(Collectors.toList());
-
-    }
-
-    @Override
-    public void unfollowUser(FollowIdDto followIdDto) {
-
-    }
 
     @Override
     public boolean findById(int userId) {
