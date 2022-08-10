@@ -68,7 +68,7 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
         if(Order.equalsIgnoreCase("date_asc")) {
             lstPostDto = dto.getPosts().stream().sorted((x, y) -> x.getDate().compareTo(y.getDate())).collect(Collectors.toList());
         }else if(Order.equalsIgnoreCase("date_desc")){
-             lstPostDto = dto.getPosts().stream().sorted((x, y) -> x.getDate().compareTo(y.getDate())).collect(Collectors.toList());
+             lstPostDto = dto.getPosts().stream().sorted((x, y) -> y.getDate().compareTo(x.getDate())).collect(Collectors.toList());
         }else
             throw new OrdenPostException("No se pudo ordenar la lista");
 
