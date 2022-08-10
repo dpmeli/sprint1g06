@@ -12,5 +12,5 @@ public interface ISocialMeliServiceE2 {
 
     FollowersCountDTO userFollowers(Integer userId);
 
-    public List<FollowedDTO> userFollowed (int userId);
+    public FollowedDTO userFollowed (int userId);
 }
