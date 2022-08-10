@@ -1,10 +1,7 @@
 package com.bootcamp.be_java_hisp_w16_g06.controller;
 
 
-import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
-import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersCountDTO;
-import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
-import com.bootcamp.be_java_hisp_w16_g06.dto.Response;
+import com.bootcamp.be_java_hisp_w16_g06.dto.*;
 import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE21;
@@ -12,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class SocialMeliController {
@@ -32,10 +31,11 @@ public class SocialMeliController {
 
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
+    public ResponseEntity<List<UserDTO>> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
         try {
-            serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
-            return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
+            //serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
+            //return new ResponseEntity<>(new Response("User Followed Successful", 200), HttpStatus.valueOf(200));
+            return new ResponseEntity<>(serviceE1.followUser(new FollowIdDto(userId, userIdToFollow)), HttpStatus.CREATED);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -1,9 +1,12 @@
 package com.bootcamp.be_java_hisp_w16_g06.service;
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
+import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
+
+import java.util.List;
 
 public interface ISocialMeliServiceE1 {
-    void followUser(FollowIdDto followIdDto);
+    List<UserDTO> followUser(FollowIdDto followIdDto);
     boolean findById(int userId);
     void unfollowUser(FollowIdDto followIdDto);
 }
