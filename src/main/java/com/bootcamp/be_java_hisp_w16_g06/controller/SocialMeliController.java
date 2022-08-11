@@ -4,7 +4,7 @@ package com.bootcamp.be_java_hisp_w16_g06.controller;
 import com.bootcamp.be_java_hisp_w16_g06.dto.*;
 import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE21;
+import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class SocialMeliController {
     @Autowired
     SocialMeliServiceE1 serviceE1;
     @Autowired
-    SocialMeliServiceE21 service2;
+    SocialMeliServiceE2 service2;
 
     @GetMapping
     public ResponseEntity<ResponseDTO> test() {
