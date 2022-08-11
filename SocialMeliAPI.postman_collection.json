@@ -1,10 +1,6 @@
 {
 	"info": {
-
-		"_postman_id": "c46a9868-41f5-4879-9fb1-7e5b1aae988d",
-
-		"_postman_id": "06cf130a-8877-42e2-ab76-e1a89c7ed46e",
-
+gi		"_postman_id": "cbfedff4-2620-48ea-bd8f-31d19c85e412",
 		"name": "SocialMeliAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -129,6 +125,62 @@
 						{
 							"key": "order",
 							"value": "name_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 008 Followers Order desc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1/followers/list?order=name_desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"followers",
+						"list"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "name_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 008 Followers Order asc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1/followers/list?order=name_asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"followers",
+						"list"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "name_asc"
 						}
 					]
 				}
