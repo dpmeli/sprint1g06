@@ -21,14 +21,14 @@ public class SocialMeliController {
     SocialMeliServiceE21 service2;
 
     @GetMapping
-    public ResponseEntity<Response> test() {
-        return new ResponseEntity<>(new Response("Message Accepted", 200), HttpStatus.valueOf(200));
+    public ResponseEntity<ResponseDTO> test() {
+        return new ResponseEntity<>(new ResponseDTO("Message Accepted", 200), HttpStatus.valueOf(200));
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<Response> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        Response responseFollow = serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
+    public ResponseEntity<ResponseDTO> US001(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        ResponseDTO responseFollow = serviceE1.followUser(new FollowIdDto(userId, userIdToFollow));
         return new ResponseEntity<>(responseFollow, HttpStatus.valueOf(responseFollow.getStatusCode()));
     }
 
@@ -57,9 +57,9 @@ public class SocialMeliController {
     //US 0005: Dar de alta una nueva publicación
     @PostMapping("/products/post")
 
-    public ResponseEntity<Response> US005(@RequestBody RequestPostDTO dto) {
+    public ResponseEntity<ResponseDTO> US005(@RequestBody RequestPostDTO dto) {
         socialMaMeliServiceE3.createPost(dto);
-        return new ResponseEntity<>(new Response("", 200), HttpStatus.valueOf(200));
+        return new ResponseEntity<>(new ResponseDTO("", 200), HttpStatus.valueOf(200));
     }
 
     //US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las
@@ -72,8 +72,8 @@ public class SocialMeliController {
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<Response> US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        Response responseUnfollow = serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
+    public ResponseEntity<ResponseDTO> US007(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        ResponseDTO responseUnfollow = serviceE1.unFollowUser(new FollowIdDto(userId, userIdToUnfollow));
         return new ResponseEntity<>(responseUnfollow, HttpStatus.valueOf(responseUnfollow.getStatusCode()));
     }
 

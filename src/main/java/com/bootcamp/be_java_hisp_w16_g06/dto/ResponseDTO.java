@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Response {
+public class ResponseDTO {
     private String message;
     private int statusCode;
 }

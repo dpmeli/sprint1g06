@@ -137,7 +137,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/19/follow/20",
+					"raw": "localhost:8080/users/19/unfollow/20",
 					"host": [
 						"localhost"
 					],
@@ -145,7 +145,7 @@
 					"path": [
 						"users",
 						"19",
-						"follow",
+						"unfollow",
 						"20"
 					]
 				}
