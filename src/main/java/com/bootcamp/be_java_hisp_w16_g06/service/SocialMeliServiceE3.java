@@ -79,7 +79,12 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
     }
 
     private Post requestDTOToEntity(RequestPostDTO dto) {
-        Product product = new Product(dto.getProduct().getProduct_id(), dto.getProduct().getProduct_name(), dto.getProduct().getType(), dto.getProduct().getBrand(), dto.getProduct().getColor(), dto.getProduct().getNotes());
+        Product product = new Product(
+                dto.getProduct().getProduct_id(),
+                dto.getProduct().getProduct_name(),
+                dto.getProduct().getType(), dto.getProduct().getBrand(),
+                dto.getProduct().getColor(),
+                dto.getProduct().getNotes());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate = LocalDate.parse(dto.getDate(), formatter);
