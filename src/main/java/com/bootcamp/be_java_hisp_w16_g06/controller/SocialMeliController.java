@@ -2,7 +2,9 @@ package com.bootcamp.be_java_hisp_w16_g06.controller;
 
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.*;
-import com.bootcamp.be_java_hisp_w16_g06.service.*;
+import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE1;
+import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE2;
+import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +22,11 @@ public class SocialMeliController {
     @Autowired
     ISocialMeliServiceE2 service2;
 
-    @GetMapping
-    public ResponseEntity<ResponseDTO> test() {
-        return new ResponseEntity<>(new ResponseDTO("Message Accepted", 200), HttpStatus.valueOf(200));
+    @GetMapping("/{status}")
+    public ResponseEntity<ResponseDTO> test(@PathVariable int status) {
+        HttpStatus httpStatus = HttpStatus.valueOf(status);
+        ResponseDTO responseDTO = new ResponseDTO(httpStatus.getReasonPhrase(), httpStatus.value());
+        return new ResponseEntity<>(responseDTO, httpStatus);
     }
 
     //US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
