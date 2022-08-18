@@ -13,5 +13,5 @@ public interface ISocialMeliServiceE2 {
     FollowersDTO userFollowersOrder(int userId, String order);
     FollowersCountDTO userFollowers(Integer userId);
     FollowedDTO userFollowed(int userId, String order);
-    FollowedDTO userFollowed(int userId);
+
 }
