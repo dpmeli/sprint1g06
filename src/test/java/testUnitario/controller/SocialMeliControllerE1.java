@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
@@ -28,10 +26,10 @@ public class SocialMeliControllerE1 {
         ResponseDTO responseDTO = new ResponseDTO(httpStatus.getReasonPhrase(), httpStatus.value());
         ResponseEntity response = new ResponseEntity<>(responseDTO, httpStatus);
 
-        SocialMeliController meliController = mock(SocialMeliController.class);
-        when(meliController.test(anyInt())).thenReturn(response);
-        System.out.println(response);
+        //SocialMeliController meliController = mock(SocialMeliController.class);
+        //when(socialMeliController.test(statusCodeTest)).thenReturn(response);
+        //System.out.println(response);
 
-        assertEquals(HttpStatus.OK, meliController.test(400).getStatusCode());
+        assertEquals(HttpStatus.OK, socialMeliController.test(statusCodeTest).getStatusCode());
     }
 }
