@@ -15,7 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +34,11 @@ public class SocialMeliServiceE1Tomas {
 
         //Arrange
         List<User> listUser = new ArrayList<>();
+        List<Follow> listFollower = new ArrayList<>();
+        List<Follow> listFollowed = new ArrayList<>();
+
+        User user = new User(7, "Karen", listFollower, listFollowed);
+        listUser.add(user);
 
         FollowIdDto followIdDto = new FollowIdDto(7,9);
 
@@ -60,7 +64,14 @@ public class SocialMeliServiceE1Tomas {
         listFollowed.add(follow);
 
         User userOne = new User(3, "Tomas", listFollowed, listFollower);
-        User userTwo = new User(7, "Juan", listFollower, listFollowed);
+
+        List<Follow> listFollowerTwo = new ArrayList<>();
+        List<Follow> listFollowedTwo = new ArrayList<>();
+
+        Follow followTwo = new Follow(3, "Tomas");
+        listFollowerTwo.add(followTwo);
+
+        User userTwo = new User(7, "Juan", listFollowerTwo, listFollowedTwo);
 
         FollowIdDto followIdDto = new FollowIdDto(3,7);
 
