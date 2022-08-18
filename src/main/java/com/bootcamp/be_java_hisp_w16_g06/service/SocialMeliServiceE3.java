@@ -45,8 +45,11 @@ public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
         List<Post> post = postRepository.getPosts();
         List<UserDTO> users = listUserDTO(userFollowersRepository.getUsersList().stream().filter(x -> (x.getUserId() == userId)).collect(Collectors.toList()));
 
-        List<Follow> follows = users.get(0).getFollowed();
+        List<Follow> follows = new ArrayList<>();
 
+        if (users.size() > 0) {
+            follows = users.get(0).getFollowed();
+        }
         List<Post> posts = new ArrayList<>();
 
         for (int i = 0; i < post.size(); i++) {
