@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,11 +19,14 @@ public class SocialMeliControllerE1 {
 
     @Test
     public void testHealth_OK() {
-        HttpStatus httpStatus = HttpStatus.valueOf(200);
+        int statusCodeTest = 200;
+        HttpStatus httpStatus = HttpStatus.valueOf(statusCodeTest);
         ResponseDTO responseDTO = new ResponseDTO(httpStatus.getReasonPhrase(), httpStatus.value());
+        ResponseEntity response = new ResponseEntity<>(responseDTO, httpStatus);
 
-        //when(socialMeliController.test(200)).thenReturn(new ResponseEntity<>(responseDTO, httpStatus));
+        //when(socialMeliController.test(Mockito.anyInt())).thenReturn(response);
+        System.out.println(response);
 
-        assertEquals(HttpStatus.OK, socialMeliController.test(200).getStatusCode());
+        assertEquals(HttpStatus.OK, socialMeliController.test(statusCodeTest).getStatusCode());
     }
 }
