@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class SocialMeliController {
 
@@ -55,7 +57,7 @@ public class SocialMeliController {
     //US 0005: Dar de alta una nueva publicación
     @PostMapping("/products/post")
 
-    public ResponseEntity<ResponseDTO> US005(@RequestBody RequestPostDTO dto) {
+    public ResponseEntity<ResponseDTO> US005(@RequestBody @Valid RequestPostDTO dto) {
         socialMaMeliServiceE3.createPost(dto);
         return new ResponseEntity<>(new ResponseDTO("", 200), HttpStatus.valueOf(200));
     }
