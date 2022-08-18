@@ -7,7 +7,6 @@ public interface ISocialMeliServiceE1 {
     ResponseDTO followUser(FollowIdDto followIdDto);
 
     ResponseDTO unFollowUser(FollowIdDto followIdDto);
-
     boolean findById(int userId);
 
 }
