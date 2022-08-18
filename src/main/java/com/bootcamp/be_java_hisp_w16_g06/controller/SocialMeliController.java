@@ -96,13 +96,11 @@ public class SocialMeliController {
     //US 0010: Llevar a cabo la publicación de un nuevo producto en promoción
     @PostMapping("/products/promo-post")
     public void US0010() {
-
     }
 
     //US 0011: Obtener la cantidad de productos en promoción de un determinado vendedor
     @GetMapping("/products/promo-post/count?user_id={userId}")
     public void US0011() {
-
     }
 
     /* C_Ejemplo_Requerimiento_Bonus */
@@ -110,7 +108,6 @@ public class SocialMeliController {
     //US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
     @GetMapping("/products/promo-post/list?user_id={userId}")
     public void US0012() {
-
     }
 
 }
