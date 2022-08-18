@@ -34,7 +34,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
     Map<Integer, String> followMap = new HashMap<Integer, String>();
     List<UserDTO> listUser = new ArrayList<>();
 
-    ResponseDTO responseSpected ;
+    ResponseDTO responseSpected;
 
     @Override
     public ResponseDTO followUser(FollowIdDto followIdDto) {
@@ -156,7 +156,6 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         if (users.isEmpty()) {
             throw new UserNotFoundException("User Not Found");
         } else {
-
             return true;
         }
 
