@@ -20,7 +20,6 @@ public class FollowersAndFollowedService implements IFollowersAndFollowedService
     @Autowired
     UserFollowersRepository repository;
 
-
     @Override
     public FollowersCountDTO userFollowers(Integer userId) {
         Optional<UserDTO> user = findById(userId).stream().findFirst();

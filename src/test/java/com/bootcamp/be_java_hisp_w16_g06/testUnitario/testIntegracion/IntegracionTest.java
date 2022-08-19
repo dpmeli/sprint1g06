@@ -20,8 +20,7 @@ import java.nio.charset.StandardCharsets;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -75,6 +74,31 @@ public class IntegracionTest {
                 .andReturn();
 
         Assertions.assertEquals(responseExpected, mvcResult.getResponse().getStatus());
+    }
+
+
+    @Test
+    @DisplayName("createPostExceptionValid - Test Integracion")
+    public void createPostExceptionValid() throws Exception {
+
+        ProductDTO product = new ProductDTO(1, "Silla Gamer", "Gamer", "Racer", "Red & Black", "Special Edition");
+        RequestPostDTO postDto = new RequestPostDTO(1, "11-08-2022", product, 100, 1500.50);
+
+        ObjectWriter writer = new ObjectMapper()
+                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .writer();
+
+        String postDTOJson = writer.writeValueAsString(postDto);
+
+
+        this.mockMv.perform(post("/products/post")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(postDTOJson))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.statusCode").value(400));
+
     }
 
 

@@ -11,6 +11,7 @@ import com.bootcamp.be_java_hisp_w16_g06.exceptions.OrdenPostException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import com.bootcamp.be_java_hisp_w16_g06.service.FollowUnFollowService;
+import com.bootcamp.be_java_hisp_w16_g06.service.PostService;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +36,7 @@ public class PostTest {
 
 
     @InjectMocks
-    com.bootcamp.be_java_hisp_w16_g06.service.PostTest socialMeliServiceE3;
+    PostService socialMeliServiceE3;
 
     @Mock
     PostRepository postRepository;

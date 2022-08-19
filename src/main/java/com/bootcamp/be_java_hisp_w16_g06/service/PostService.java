@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PostTest implements IPostTest {
+public class PostService implements IPostService {
 
     @Autowired
     PostRepository postRepository;

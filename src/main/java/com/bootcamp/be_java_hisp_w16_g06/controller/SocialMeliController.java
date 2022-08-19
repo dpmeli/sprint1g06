@@ -4,7 +4,7 @@ package com.bootcamp.be_java_hisp_w16_g06.controller;
 import com.bootcamp.be_java_hisp_w16_g06.dto.*;
 import com.bootcamp.be_java_hisp_w16_g06.service.IFollowUnFollowService;
 import com.bootcamp.be_java_hisp_w16_g06.service.IFollowersAndFollowedService;
-import com.bootcamp.be_java_hisp_w16_g06.service.IPostTest;
+import com.bootcamp.be_java_hisp_w16_g06.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 public class SocialMeliController {
 
     @Autowired
-    IPostTest socialMaMeliServiceE3;
+    IPostService socialMaMeliServiceE3;
     @Autowired
     IFollowUnFollowService serviceE1;
     @Autowired
