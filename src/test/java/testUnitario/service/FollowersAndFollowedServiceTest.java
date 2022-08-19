@@ -34,18 +34,17 @@ public class FollowersAndFollowedServiceTest {
     @Test
     @Description("Modo ordenamiento no existe")
     // T-003 Verificar que el tipo de ordenamiento alfabético exista (US-0008)
-    public void noExisteOrdenamientoTest()
-    {
+    public void noExisteOrdenamientoTest() {
         // arrange
         Integer idUser = 1;
         Boolean exception = false;
         String order = "asc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
+        followed.add(new Follow(1, "Andres"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        followers.add(new Follow(1, "Manuel"));
+        users.add(new User(1, "Juan", followed, followers));
 
         // act
 
@@ -58,19 +57,18 @@ public class FollowersAndFollowedServiceTest {
 
     @Test
     @Description("Modo ordenamiento ascendente")
-    public void ExisteOrdenamientoAscendenteTest()
-    {
+    public void ExisteOrdenamientoAscendenteTest() {
         // arrange
         Integer idUser = 1;
         Boolean exception = false;
         String order = "name_asc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
-        followed.add(new Follow(2,"Marco"));
+        followed.add(new Follow(1, "Andres"));
+        followed.add(new Follow(2, "Marco"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        followers.add(new Follow(1, "Manuel"));
+        users.add(new User(1, "Juan", followed, followers));
         String first = "Andres";
 
         // act
@@ -85,19 +83,18 @@ public class FollowersAndFollowedServiceTest {
 
     @Test
     @Description("Modo ordenamiento descendente")
-    public void ExisteOrdenamientoDescendenteTest()
-    {
+    public void ExisteOrdenamientoDescendenteTest() {
         // arrange
         Integer idUser = 1;
         Boolean exception = false;
         String order = "name_desc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
-        followed.add(new Follow(2,"Marco"));
+        followed.add(new Follow(1, "Andres"));
+        followed.add(new Follow(2, "Marco"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        followers.add(new Follow(1, "Manuel"));
+        users.add(new User(1, "Juan", followed, followers));
         String first = "Marco";
 
         // act
@@ -112,19 +109,18 @@ public class FollowersAndFollowedServiceTest {
 
     @Test
     @Description("Modo ordenamiento null")
-    public void ExisteOrdenamientoNullTest()
-    {
+    public void ExisteOrdenamientoNullTest() {
         // arrange
         Integer idUser = 1;
         Boolean exception = false;
         String order = null;
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
-        followed.add(new Follow(2,"Marco"));
+        followed.add(new Follow(1, "Andres"));
+        followed.add(new Follow(2, "Marco"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        followers.add(new Follow(1, "Manuel"));
+        users.add(new User(1, "Juan", followed, followers));
         String first = "Andres";
 
         // act
@@ -139,19 +135,18 @@ public class FollowersAndFollowedServiceTest {
 
     @Test
     @Description("No se encuentra el usuario")
-    public void NoExisteUsuario()
-    {
+    public void NoExisteUsuario() {
         // arrange
         Integer idUser = 333;
         Boolean exception = false;
         String order = "name_asc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
-        followed.add(new Follow(2,"Marco"));
+        followed.add(new Follow(1, "Andres"));
+        followed.add(new Follow(2, "Marco"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        followers.add(new Follow(1, "Manuel"));
+        users.add(new User(1, "Juan", followed, followers));
 
         // act
 
@@ -164,8 +159,7 @@ public class FollowersAndFollowedServiceTest {
 
     @Test
     @Description("No sigue vendedores")
-    public void NoExisteFollowedDeUsuario()
-    {
+    public void NoExisteFollowedDeUsuario() {
         // arrange
         Integer idUser = 1;
         Boolean exception = false;
@@ -174,7 +168,7 @@ public class FollowersAndFollowedServiceTest {
         List<Follow> followed = new ArrayList<>();
         List<Follow> followers = new ArrayList<>();
         //followers.add(new Follow(1,"Manuel"));
-        users.add(new User(1,"Juan",followed,followers));
+        users.add(new User(1, "Juan", followed, followers));
 
         // act
 
@@ -188,19 +182,18 @@ public class FollowersAndFollowedServiceTest {
     /* LISTA DE ORDENAMIENTO DE SEGUIDERS */
 
     @Test
-    public void sinOrdenEnSeguidoresTest()
-    {
+    public void sinOrdenEnSeguidoresTest() {
         // arrange
         Integer idUser = 1;
         String order = "asc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
+        followed.add(new Follow(1, "Andres"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(2,"Manuel"));
-        followers.add(new Follow(3,"Carlos"));
-        followers.add(new Follow(4,"Jorge"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(2, "Manuel"));
+        followers.add(new Follow(3, "Carlos"));
+        followers.add(new Follow(4, "Jorge"));
+        users.add(new User(idUser, "Juan", followed, followers));
 
         // act
 
@@ -212,19 +205,18 @@ public class FollowersAndFollowedServiceTest {
     }
 
     @Test
-    public void ordenAscedenteSeguidoresTest()
-    {
+    public void ordenAscedenteSeguidoresTest() {
         // arrange
         Integer idUser = 1;
         String order = "name_asc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
+        followed.add(new Follow(1, "Andres"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(2,"Manuel"));
-        followers.add(new Follow(3,"Carlos"));
-        followers.add(new Follow(4,"Aldo"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(2, "Manuel"));
+        followers.add(new Follow(3, "Carlos"));
+        followers.add(new Follow(4, "Aldo"));
+        users.add(new User(idUser, "Juan", followed, followers));
         String first = "Aldo";
 
         // act
@@ -238,19 +230,18 @@ public class FollowersAndFollowedServiceTest {
     }
 
     @Test
-    public void ordenDescendenteSeguidoresTest()
-    {
+    public void ordenDescendenteSeguidoresTest() {
         // arrange
         Integer idUser = 1;
         String order = "name_desc";
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
+        followed.add(new Follow(1, "Andres"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(2,"Manuel"));
-        followers.add(new Follow(3,"Carlos"));
-        followers.add(new Follow(4,"Aldo"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(2, "Manuel"));
+        followers.add(new Follow(3, "Carlos"));
+        followers.add(new Follow(4, "Aldo"));
+        users.add(new User(idUser, "Juan", followed, followers));
         String lastet = "Manuel";
 
         // act
@@ -264,19 +255,18 @@ public class FollowersAndFollowedServiceTest {
     }
 
     @Test
-    public void ordenNuloSeguidoresTest()
-    {
+    public void ordenNuloSeguidoresTest() {
         // arrange
         Integer idUser = 1;
         String order = null;
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(1,"Andres"));
+        followed.add(new Follow(1, "Andres"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(2,"Manuel"));
-        followers.add(new Follow(3,"Carlos"));
-        followers.add(new Follow(4,"Aldo"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(2, "Manuel"));
+        followers.add(new Follow(3, "Carlos"));
+        followers.add(new Follow(4, "Aldo"));
+        users.add(new User(idUser, "Juan", followed, followers));
         String lastet = "Manuel";
 
         // act
@@ -290,19 +280,19 @@ public class FollowersAndFollowedServiceTest {
     /*LISTA DE SEGUIDORES CORRECTOS*/
 
     @Test
-    public void seguidoresCorrectosTest(){
+    public void seguidoresCorrectosTest() {
 
         //Arage
         Integer idUser = 1;
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(10,"Carlos"));
+        followed.add(new Follow(10, "Carlos"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(20,"Saul"));
-        followers.add(new Follow(21,"Pedro"));
-        followers.add(new Follow(22,"Juan"));
-        followers.add(new Follow(23,"Karla"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(20, "Saul"));
+        followers.add(new Follow(21, "Pedro"));
+        followers.add(new Follow(22, "Juan"));
+        followers.add(new Follow(23, "Karla"));
+        users.add(new User(idUser, "Juan", followed, followers));
 
         //Act
         when(userFollowersRepository.getUsersList()).thenReturn(users);
@@ -312,8 +302,9 @@ public class FollowersAndFollowedServiceTest {
         Assertions.assertTrue(followersCountDTO.getFollowers_count() == 4);
 
     }
+
     @Test
-    public void seguidoresNullTest(){
+    public void seguidoresNullTest() {
 
         //Arage
         Integer idUser = 1;
@@ -324,7 +315,7 @@ public class FollowersAndFollowedServiceTest {
         //followers.add(new Follow(21,"Pedro"));
         //followers.add(new Follow(22,"Juan"));
         //followers.add(new Follow(23,"Karla"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        users.add(new User(idUser, "Juan", followed, followers));
 
         //Act
         when(userFollowersRepository.getUsersList()).thenReturn(users);
@@ -336,19 +327,19 @@ public class FollowersAndFollowedServiceTest {
     }
 
     @Test
-    public void seguidoresErroneoTest(){
+    public void seguidoresErroneoTest() {
 
         //Arage
         Integer idUser = 1;
         List<User> users = new ArrayList<>();
         List<Follow> followed = new ArrayList<>();
-        followed.add(new Follow(10,"Carlos"));
+        followed.add(new Follow(10, "Carlos"));
         List<Follow> followers = new ArrayList<>();
-        followers.add(new Follow(20,"Saul"));
-        followers.add(new Follow(21,"Pedro"));
-        followers.add(new Follow(22,"Juan"));
-        followers.add(new Follow(23,"Karla"));
-        users.add(new User(idUser,"Juan",followed,followers));
+        followers.add(new Follow(20, "Saul"));
+        followers.add(new Follow(21, "Pedro"));
+        followers.add(new Follow(22, "Juan"));
+        followers.add(new Follow(23, "Karla"));
+        users.add(new User(idUser, "Juan", followed, followers));
 
         //Act
         when(userFollowersRepository.getUsersList()).thenReturn(users);

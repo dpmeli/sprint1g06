@@ -4,18 +4,18 @@ import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 public class UserFollowersRepositoryTest {
 
     private UserFollowersRepository userFollowersRepository;
 
     @BeforeEach
-    public void  init(){
+    public void init() {
         userFollowersRepository = new UserFollowersRepository();
     }
+
     @Test
-    public void loadData(){
+    public void loadData() {
         Assertions.assertTrue(userFollowersRepository.getUsersList().size() > 0);
     }
 }

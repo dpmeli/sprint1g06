@@ -5,7 +5,6 @@ import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
 import com.bootcamp.be_java_hisp_w16_g06.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
-import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE1;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE3;
 import jdk.jfr.Description;
@@ -14,10 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +35,7 @@ public class SocialMeliServiceE3Aldo {
 
     @Test
     @Description("Creación de Post")
-    public void CreatePostTest()
-    {
+    public void CreatePostTest() {
         // arrange
         RequestPostDTO requestPostDTO = new RequestPostDTO();
         ProductDTO productDTO = new ProductDTO();
@@ -66,8 +61,7 @@ public class SocialMeliServiceE3Aldo {
 
     @Test
     @Description("No Creacion de Post")
-    public void NoCreatePostTest()
-    {
+    public void NoCreatePostTest() {
         // arrange
         RequestPostDTO requestPostDTO = new RequestPostDTO();
         ProductDTO productDTO = new ProductDTO();

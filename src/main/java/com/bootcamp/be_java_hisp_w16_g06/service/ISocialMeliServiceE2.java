@@ -10,8 +10,11 @@ import java.util.List;
 public interface ISocialMeliServiceE2 {
 
     List<UserDTO> findById(int userId);
+
     FollowersDTO userFollowersOrder(int userId, String order);
+
     FollowersCountDTO userFollowers(Integer userId);
+
     FollowedDTO userFollowed(int userId, String order);
 
 }

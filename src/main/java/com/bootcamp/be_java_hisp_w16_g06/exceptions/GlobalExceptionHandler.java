@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @ControllerAdvice
-public class GlobalExceptionHandler extends RuntimeException{
+public class GlobalExceptionHandler extends RuntimeException {
 
     @ExceptionHandler(UserNotFoundException.class)
 
@@ -57,7 +57,7 @@ public class GlobalExceptionHandler extends RuntimeException{
                             String field = e.getField();
                             String msg = e.getDefaultMessage();
                             List<String> errorFields = new ArrayList<>();
-                            if (errors.containsKey(field)){
+                            if (errors.containsKey(field)) {
                                 errorFields = errors.get(field);
                             }
                             errorFields.add(msg);

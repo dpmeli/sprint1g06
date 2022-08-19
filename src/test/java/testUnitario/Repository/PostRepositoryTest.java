@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostRepositoryTest {
 
@@ -18,14 +19,13 @@ public class PostRepositoryTest {
     }
 
     @Test
-    public void getRepository()
-    {
+    public void getRepository() {
         Assertions.assertTrue(postRepository.getPosts().size() == 0);
 
     }
+
     @Test
-    public void correlativoInicial()
-    {
+    public void correlativoInicial() {
         int correlativoActual = 1;
         int idcontador = postRepository.getCorrelativo();
 
@@ -33,8 +33,7 @@ public class PostRepositoryTest {
     }
 
     @Test
-    public void correlativoPostInsert()
-    {
+    public void correlativoPostInsert() {
         Post post = new Post();
         post.setPostId(1);
         List<Post> lstPost = new ArrayList<>();

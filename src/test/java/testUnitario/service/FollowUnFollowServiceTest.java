@@ -20,8 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class FollowUnFollowServiceTest {
@@ -68,7 +67,7 @@ public class FollowUnFollowServiceTest {
 
         User userTwo = new User(7, "Juan", listFollowerTwo, listFollowedTwo);
 
-        FollowIdDto followIdDto = new FollowIdDto(3,7);
+        FollowIdDto followIdDto = new FollowIdDto(3, 7);
 
         listUser.add(userOne);
         listUser.add(userTwo);
@@ -115,7 +114,7 @@ public class FollowUnFollowServiceTest {
 
     @Test
     @DisplayName("El usuario a dejar de seguir NO existe")
-    public void unFollowUserNotFoundTest(){
+    public void unFollowUserNotFoundTest() {
 
         //Arrange
         List<User> listUser = new ArrayList<>();
@@ -125,7 +124,7 @@ public class FollowUnFollowServiceTest {
         User user = new User(7, "Karen", listFollower, listFollowed);
         listUser.add(user);
 
-        FollowIdDto followIdDto = new FollowIdDto(7,9);
+        FollowIdDto followIdDto = new FollowIdDto(7, 9);
 
         Mockito.when(userFollowersRepository.getUsersList()).thenReturn(listUser);
 
@@ -159,7 +158,7 @@ public class FollowUnFollowServiceTest {
 
         User userTwo = new User(7, "Juan", listFollowerTwo, listFollowedTwo);
 
-        FollowIdDto followIdDto = new FollowIdDto(3,7);
+        FollowIdDto followIdDto = new FollowIdDto(3, 7);
 
         listUser.add(userOne);
         listUser.add(userTwo);

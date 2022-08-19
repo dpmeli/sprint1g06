@@ -44,7 +44,7 @@ public class SocialMeliControllerE1 {
 
     @Test
     @DisplayName("US007")
-    public void unFollowTest(){
+    public void unFollowTest() {
 
         int userId = 5;
         int userIdToUnfollow = 7;
