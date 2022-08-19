@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
+public class FollowUnFollowService implements IFollowUnFollowService {
 
     int idFollower;
     int idFollowed;
@@ -42,8 +42,8 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         idFollower = followIdDto.getUserId(); //  Seguidor
         idFollowed = followIdDto.getUserIdToFollow();//  Seguido
 
-        findById(idFollower);
-        findById(idFollowed);
+        existUser(idFollower);
+        existUser(idFollowed);
 
         if (followMap.isEmpty()) {
             listUser = listUserDTO(userFollowersRepository.getUsersList());
@@ -106,8 +106,8 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
         idFollower = followIdDto.getUserId(); //  Seguidor
         idToUnfollow = followIdDto.getUserIdToFollow();// !Seguido
 
-        findById(idFollower);
-        findById(idToUnfollow);
+        existUser(idFollower);
+        existUser(idToUnfollow);
 
         if (followMap.isEmpty()) {
             listUser = listUserDTO(userFollowersRepository.getUsersList());
@@ -146,7 +146,7 @@ public class SocialMeliServiceE1 implements ISocialMeliServiceE1 {
     }
 
     @Override
-    public boolean findById(int userId) {
+    public boolean existUser(int userId) {
 
         List<User> users = userFollowersRepository.getUsersList()
                 .stream()

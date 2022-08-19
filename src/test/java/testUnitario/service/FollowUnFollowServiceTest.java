@@ -7,7 +7,7 @@ import com.bootcamp.be_java_hisp_w16_g06.entity.User;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowException;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
+import com.bootcamp.be_java_hisp_w16_g06.service.FollowUnFollowService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ public class FollowUnFollowServiceTest {
     UserFollowersRepository userFollowersRepository;
 
     @InjectMocks
-    SocialMeliServiceE1 socialMeliServiceE1;
+    FollowUnFollowService followUnFollowService;
 
 
     @Test
@@ -41,7 +41,7 @@ public class FollowUnFollowServiceTest {
         when(userFollowersRepository.getUsersList()).thenReturn(userList);
         //Act
 
-        Assertions.assertThrows(UserNotFoundException.class, () -> socialMeliServiceE1.followUser(idDto));
+        Assertions.assertThrows(UserNotFoundException.class, () -> followUnFollowService.followUser(idDto));
     }
 
 
@@ -77,7 +77,7 @@ public class FollowUnFollowServiceTest {
         //Act
 
         //Assert
-        Assertions.assertThrows(FollowException.class, () -> socialMeliServiceE1.followUser(followIdDto));
+        Assertions.assertThrows(FollowException.class, () -> followUnFollowService.followUser(followIdDto));
     }
 
 
@@ -105,7 +105,7 @@ public class FollowUnFollowServiceTest {
 
         //Act
         ResponseDTO responseDTOService;
-        responseDTOService = socialMeliServiceE1.followUser(followIdDto);
+        responseDTOService = followUnFollowService.followUser(followIdDto);
 
         //Assert
         Assertions.assertEquals(responseDTOExpected, responseDTOService);
@@ -129,7 +129,7 @@ public class FollowUnFollowServiceTest {
         Mockito.when(userFollowersRepository.getUsersList()).thenReturn(listUser);
 
         //Act //Assert
-        Assertions.assertThrows(UserNotFoundException.class, () -> socialMeliServiceE1.unFollowUser(followIdDto));
+        Assertions.assertThrows(UserNotFoundException.class, () -> followUnFollowService.unFollowUser(followIdDto));
 
     }
 
@@ -167,7 +167,7 @@ public class FollowUnFollowServiceTest {
 
         //Act
         ResponseDTO responseDTOService;
-        responseDTOService = socialMeliServiceE1.unFollowUser(followIdDto);
+        responseDTOService = followUnFollowService.unFollowUser(followIdDto);
 
         //Assert
         Assertions.assertEquals(responseDTOExpected, responseDTOService);

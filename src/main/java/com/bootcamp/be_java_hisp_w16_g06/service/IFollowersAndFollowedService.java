@@ -7,7 +7,7 @@ import com.bootcamp.be_java_hisp_w16_g06.dto.UserDTO;
 
 import java.util.List;
 
-public interface ISocialMeliServiceE2 {
+public interface IFollowersAndFollowedService {
 
     List<UserDTO> findById(int userId);
 

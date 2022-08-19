@@ -21,18 +21,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMeliServiceE3 implements ISocialMeliServiceE3 {
+public class PostTest implements IPostTest {
 
     @Autowired
     PostRepository postRepository;
     @Autowired
     UserFollowersRepository userFollowersRepository;
     @Autowired
-    ISocialMeliServiceE1 socialMeliServiceE1;
+    IFollowUnFollowService socialMeliServiceE1;
 
     @Override
     public void createPost(RequestPostDTO requestPostDTO) {
-        if (socialMeliServiceE1.findById(requestPostDTO.getUser_id())) {
+        if (socialMeliServiceE1.existUser(requestPostDTO.getUser_id())) {
             List<Post> lstRepository = postRepository.getPosts();
             lstRepository.add(requestDTOToEntity(requestPostDTO));
             postRepository.setPosts(lstRepository);

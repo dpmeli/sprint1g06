@@ -22,8 +22,8 @@ public class GlobalExceptionHandler extends RuntimeException {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(FollowedNotFounException.class)
-    public ResponseEntity<ResponseDTO> catchFollowedNotFound(FollowedNotFounException e) {
+    @ExceptionHandler(FollowedNotFoundException.class)
+    public ResponseEntity<ResponseDTO> catchFollowedNotFound(FollowedNotFoundException e) {
         ResponseDTO exceptionResponse = new ResponseDTO(e.getMessage(), 404);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }

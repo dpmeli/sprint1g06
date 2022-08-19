@@ -18,6 +18,7 @@ public class PostRepository {
         this.posts = new ArrayList<>();
     }
 
+
     public int getCorrelativo() {
         Optional<Post> correlativo = posts.stream().sorted((p, x) -> x.getPostId().compareTo(p.getPostId())).findFirst();
         if (correlativo.isPresent())

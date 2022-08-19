@@ -3,7 +3,7 @@ package com.bootcamp.be_java_hisp_w16_g06.service;
 import com.bootcamp.be_java_hisp_w16_g06.dto.RequestPostDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.ResponsePostDTO;
 
-public interface ISocialMeliServiceE3 {
+public interface IPostTest {
 
     void createPost(RequestPostDTO requestPostDTO);
 

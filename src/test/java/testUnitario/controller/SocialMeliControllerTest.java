@@ -3,7 +3,7 @@ package testUnitario.controller;
 import com.bootcamp.be_java_hisp_w16_g06.controller.SocialMeliController;
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowIdDto;
 import com.bootcamp.be_java_hisp_w16_g06.dto.ResponseDTO;
-import com.bootcamp.be_java_hisp_w16_g06.service.ISocialMeliServiceE1;
+import com.bootcamp.be_java_hisp_w16_g06.service.IFollowUnFollowService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +19,10 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-public class SocialMeliControllerE1 {
+public class SocialMeliControllerTest {
 
     @Mock
-    ISocialMeliServiceE1 socialMeliServiceE1;
+    IFollowUnFollowService socialMeliServiceE1;
 
     @InjectMocks
     SocialMeliController socialMeliController;
@@ -39,7 +39,7 @@ public class SocialMeliControllerE1 {
 
 
     @Test
-    @DisplayName("US001")
+    @DisplayName("followUser")
     public void followTest() {
 
         int userId = 5;
@@ -51,7 +51,7 @@ public class SocialMeliControllerE1 {
 
         when(socialMeliServiceE1.followUser(followIdDto)).thenReturn(responseDTO);
 
-        Assertions.assertEquals(HttpStatus.OK, socialMeliController.US001(userId, userIdToUnfollow).getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, socialMeliController.followUser(userId, userIdToUnfollow).getStatusCode());
     }
 
     @Test
@@ -69,6 +69,6 @@ public class SocialMeliControllerE1 {
 
         when(socialMeliServiceE1.unFollowUser(followIdDto)).thenReturn(responseDTO);
 
-        Assertions.assertEquals(HttpStatus.OK, socialMeliController.US007(userId, userIdToUnfollow).getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, socialMeliController.unfollowUser(userId, userIdToUnfollow).getStatusCode());
     }
 }

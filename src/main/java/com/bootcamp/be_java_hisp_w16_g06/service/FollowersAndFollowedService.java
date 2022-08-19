@@ -3,7 +3,7 @@ package com.bootcamp.be_java_hisp_w16_g06.service;
 import com.bootcamp.be_java_hisp_w16_g06.dto.*;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
-import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowedNotFounException;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowedNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMeliServiceE2 implements ISocialMeliServiceE2 {
+public class FollowersAndFollowedService implements IFollowersAndFollowedService {
 
     @Autowired
     UserFollowersRepository repository;
@@ -31,19 +31,7 @@ public class SocialMeliServiceE2 implements ISocialMeliServiceE2 {
         }
     }
 
-    // Recibe del controller el id del usuario y valida si es usuario y llama al metodo de obtener los seguidores
-
-    private FollowedDTO userFollowed(int userId) {
-
-        Optional<UserDTO> user = findById(userId).stream().findFirst();
-        if (user.isPresent()) {
-            return new FollowedDTO(user.get().getUserId(), user.get().getUserName(), userFollowedDTO(user.get()));
-        } else {
-            throw new UserNotFoundException("No se encuentra el usuario");
-        }
-
-    }
-
+    @Override
     public FollowedDTO userFollowed(int userId, String order) {
         FollowedDTO dto = userFollowed(userId);
         List<ListFollowedDTO> followed;
@@ -53,39 +41,14 @@ public class SocialMeliServiceE2 implements ISocialMeliServiceE2 {
         } else if (order.equalsIgnoreCase("name_desc")) {
             followed = dto.getFollowed().stream().sorted((x, y) -> y.getUser_name().compareTo(x.getUser_name())).collect(Collectors.toList());
         } else {
-            throw new FollowedNotFounException("La forma de ordenado no existe");
+            throw new FollowedNotFoundException("La forma de ordenado no existe");
         }
         dto.setFollowed(followed);
 
         return dto;
     }
 
-    // Recibe un userDTO y obtiene la lista de seguidores, y si no es null, devuelve una lista de FollowedDTO con el id y el nombre de la lista de seguidores
-    private List<ListFollowedDTO> userFollowedDTO(UserDTO userDTO) {
-
-        List<ListFollowedDTO> followedsDTO = new ArrayList<>();
-
-        if (userDTO.getFollowed() != null && !userDTO.getFollowed().isEmpty()) {
-            for (Follow f : userDTO.getFollowed()) {
-                followedsDTO.add(new ListFollowedDTO(f.getId(), f.getName()));
-            }
-        } else {
-            throw new FollowedNotFounException("No sigue a ningun vendedor");
-        }
-        return followedsDTO;
-    }
-
-
-    public FollowersDTO listFollowers(Integer userId) {
-        Optional<UserDTO> user = findById(userId).stream().findFirst();
-        if (user.isPresent()) {
-            return new FollowersDTO(user.get().getUserId(), user.get().getUserName(), userListFollowersDTO(user.get()));
-        } else {
-            throw new UserNotFoundException("No se encuentra el usuario");
-        }
-    }
-
-
+    @Override
     public FollowersDTO userFollowersOrder(int userId, String order) {
         FollowersDTO dto = listFollowers(userId);
         List<ListFollowersDTO> followersOrder;
@@ -95,28 +58,14 @@ public class SocialMeliServiceE2 implements ISocialMeliServiceE2 {
         } else if (order.equalsIgnoreCase("name_desc")) {
             followersOrder = dto.getFollowers().stream().sorted((x, y) -> y.getUser_name().compareTo(x.getUser_name())).collect(Collectors.toList());
         } else {
-            throw new FollowedNotFounException("La forma de ordenado no existe");
+            throw new FollowedNotFoundException("La forma de ordenado no existe");
         }
         dto.setFollowers(followersOrder);
 
         return dto;
     }
 
-
-    private List<ListFollowersDTO> userListFollowersDTO(UserDTO userDTO) {
-
-        List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
-
-        if (userDTO.getFollowers() != null) {
-            for (Follow f : userDTO.getFollowers()) {
-                listFollowersDTO.add(new ListFollowersDTO(f.getId(), f.getName()));
-            }
-        } else {
-            throw new FollowedNotFounException("Null followers");
-        }
-        return listFollowersDTO;
-    }
-
+    @Override
     public List<UserDTO> findById(int userId) {
 
         List<User> users = repository.getUsersList()
@@ -148,6 +97,55 @@ public class SocialMeliServiceE2 implements ISocialMeliServiceE2 {
         }
         return new FollowersCountDTO(userDTO.getUserId(), userDTO.getUserName(), follower);
 
+    }
+
+    private FollowedDTO userFollowed(int userId) {
+
+        Optional<UserDTO> user = findById(userId).stream().findFirst();
+        if (user.isPresent()) {
+            return new FollowedDTO(user.get().getUserId(), user.get().getUserName(), userFollowedDTO(user.get()));
+        } else {
+            throw new UserNotFoundException("No se encuentra el usuario");
+        }
+
+    }
+
+    // Recibe un userDTO y obtiene la lista de seguidores, y si no es null, devuelve una lista de FollowedDTO con el id y el nombre de la lista de seguidores
+    private List<ListFollowedDTO> userFollowedDTO(UserDTO userDTO) {
+
+        List<ListFollowedDTO> followedsDTO = new ArrayList<>();
+
+        if (userDTO.getFollowed() != null && !userDTO.getFollowed().isEmpty()) {
+            for (Follow f : userDTO.getFollowed()) {
+                followedsDTO.add(new ListFollowedDTO(f.getId(), f.getName()));
+            }
+        } else {
+            throw new FollowedNotFoundException("No sigue a ningun vendedor");
+        }
+        return followedsDTO;
+    }
+
+    private List<ListFollowersDTO> userListFollowersDTO(UserDTO userDTO) {
+
+        List<ListFollowersDTO> listFollowersDTO = new ArrayList<>();
+
+        if (userDTO.getFollowers() != null) {
+            for (Follow f : userDTO.getFollowers()) {
+                listFollowersDTO.add(new ListFollowersDTO(f.getId(), f.getName()));
+            }
+        } else {
+            throw new FollowedNotFoundException("Null followers");
+        }
+        return listFollowersDTO;
+    }
+
+    private FollowersDTO listFollowers(Integer userId) {
+        Optional<UserDTO> user = findById(userId).stream().findFirst();
+        if (user.isPresent()) {
+            return new FollowersDTO(user.get().getUserId(), user.get().getUserName(), userListFollowersDTO(user.get()));
+        } else {
+            throw new UserNotFoundException("No se encuentra el usuario");
+        }
     }
 
 }

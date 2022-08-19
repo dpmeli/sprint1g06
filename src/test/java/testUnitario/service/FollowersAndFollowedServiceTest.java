@@ -5,10 +5,10 @@ import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersCountDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersDTO;
 import com.bootcamp.be_java_hisp_w16_g06.entity.Follow;
 import com.bootcamp.be_java_hisp_w16_g06.entity.User;
-import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowedNotFounException;
+import com.bootcamp.be_java_hisp_w16_g06.exceptions.FollowedNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE2;
+import com.bootcamp.be_java_hisp_w16_g06.service.FollowersAndFollowedService;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class FollowersAndFollowedServiceTest {
 
     @InjectMocks
-    SocialMeliServiceE2 socialMeli;
+    FollowersAndFollowedService socialMeli;
 
     @Mock
     UserFollowersRepository userFollowersRepository;
@@ -51,7 +51,7 @@ public class FollowersAndFollowedServiceTest {
         when(userFollowersRepository.getUsersList()).thenReturn(users);
 
         // assert
-        Assertions.assertThrows(FollowedNotFounException.class, () -> socialMeli.userFollowed(idUser, order));
+        Assertions.assertThrows(FollowedNotFoundException.class, () -> socialMeli.userFollowed(idUser, order));
 
     }
 
@@ -175,7 +175,7 @@ public class FollowersAndFollowedServiceTest {
         when(userFollowersRepository.getUsersList()).thenReturn(users);
 
         // assert
-        Assertions.assertThrows(FollowedNotFounException.class, () -> socialMeli.userFollowed(idUser, order));
+        Assertions.assertThrows(FollowedNotFoundException.class, () -> socialMeli.userFollowed(idUser, order));
 
     }
 
@@ -200,7 +200,7 @@ public class FollowersAndFollowedServiceTest {
         when(userFollowersRepository.getUsersList()).thenReturn(users);
 
         // assert
-        Assertions.assertThrows(FollowedNotFounException.class, () -> socialMeli.userFollowersOrder(idUser, order));
+        Assertions.assertThrows(FollowedNotFoundException.class, () -> socialMeli.userFollowersOrder(idUser, order));
 
     }
 

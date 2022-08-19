@@ -10,8 +10,7 @@ import com.bootcamp.be_java_hisp_w16_g06.entity.User;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.OrdenPostException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
-import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE3;
+import com.bootcamp.be_java_hisp_w16_g06.service.FollowUnFollowService;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -36,13 +35,13 @@ public class PostTest {
 
 
     @InjectMocks
-    SocialMeliServiceE3 socialMeliServiceE3;
+    com.bootcamp.be_java_hisp_w16_g06.service.PostTest socialMeliServiceE3;
 
     @Mock
     PostRepository postRepository;
 
     @Mock
-    SocialMeliServiceE1 socialMeliServiceE1;
+    FollowUnFollowService followUnFollowService;
 
     @Mock
     UserFollowersRepository userFollowersRepository;
@@ -271,7 +270,7 @@ public class PostTest {
         boolean usuarioEncontrado = true;
 
         //when(userFollowersRepository.getUsersList()).thenReturn(usersListMock);
-        when(socialMeliServiceE1.findById(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
+        when(followUnFollowService.existUser(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
 
 
         // act
@@ -297,7 +296,7 @@ public class PostTest {
         boolean usuarioEncontrado = false;
 
         //when(userFollowersRepository.getUsersList()).thenReturn(usersListMock);
-        when(socialMeliServiceE1.findById(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
+        when(followUnFollowService.existUser(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
 
 
         // act
