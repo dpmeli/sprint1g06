@@ -1,4 +1,4 @@
-package testUnitario.service;
+package com.bootcamp.be_java_hisp_w16_g06.testUnitario.service;
 
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowedDTO;
 import com.bootcamp.be_java_hisp_w16_g06.dto.FollowersCountDTO;
