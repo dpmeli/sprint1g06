@@ -10,7 +10,9 @@ import com.bootcamp.be_java_hisp_w16_g06.entity.User;
 import com.bootcamp.be_java_hisp_w16_g06.exceptions.OrdenPostException;
 import com.bootcamp.be_java_hisp_w16_g06.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w16_g06.repository.UserFollowersRepository;
+import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE1;
 import com.bootcamp.be_java_hisp_w16_g06.service.SocialMeliServiceE3;
+import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,14 +29,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
-public class SocialMeliServiceE3Juan {
+public class PostTest {
+
 
     @InjectMocks
     SocialMeliServiceE3 socialMeliServiceE3;
 
     @Mock
     PostRepository postRepository;
+
+    @Mock
+    SocialMeliServiceE1 socialMeliServiceE1;
 
     @Mock
     UserFollowersRepository userFollowersRepository;
@@ -247,4 +255,55 @@ public class SocialMeliServiceE3Juan {
 
     }
 
+    @Test
+    @Description("Creación de Post")
+    public void CreatePostTest() {
+        // arrange
+        RequestPostDTO requestPostDTO = new RequestPostDTO();
+        ProductDTO productDTO = new ProductDTO();
+        requestPostDTO.setProduct(productDTO);
+        requestPostDTO.setUser_id(1);
+        requestPostDTO.setDate("18-08-2022");
+        List<User> usersListMock = new ArrayList<>();
+        User userMock = new User();
+        userMock.setUserId(1);
+        usersListMock.add(userMock);
+        boolean usuarioEncontrado = true;
+
+        //when(userFollowersRepository.getUsersList()).thenReturn(usersListMock);
+        when(socialMeliServiceE1.findById(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
+
+
+        // act
+        socialMeliServiceE3.createPost(requestPostDTO);
+
+        // assert
+        Assertions.assertTrue(usuarioEncontrado);
+    }
+
+    @Test
+    @Description("No Creacion de Post")
+    public void NoCreatePostTest() {
+        // arrange
+        RequestPostDTO requestPostDTO = new RequestPostDTO();
+        ProductDTO productDTO = new ProductDTO();
+        requestPostDTO.setProduct(productDTO);
+        requestPostDTO.setUser_id(1);
+        requestPostDTO.setDate("18-08-2022");
+        List<User> usersListMock = new ArrayList<>();
+        User userMock = new User();
+        userMock.setUserId(1);
+        usersListMock.add(userMock);
+        boolean usuarioEncontrado = false;
+
+        //when(userFollowersRepository.getUsersList()).thenReturn(usersListMock);
+        when(socialMeliServiceE1.findById(requestPostDTO.getUser_id())).thenReturn(usuarioEncontrado);
+
+
+        // act
+        socialMeliServiceE3.createPost(requestPostDTO);
+
+        // assert
+        Assertions.assertFalse(usuarioEncontrado);
+    }
 }
