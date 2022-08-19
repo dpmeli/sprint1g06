@@ -34,13 +34,25 @@ public class SocialMeliControllerE1 {
         ResponseDTO responseDTO = new ResponseDTO(httpStatus.getReasonPhrase(), httpStatus.value());
         ResponseEntity response = new ResponseEntity<>(responseDTO, httpStatus);
 
-        //SocialMeliController meliController = mock(SocialMeliController.class);
-        //when(socialMeliController.test(statusCodeTest)).thenReturn(response);
-        //System.out.println(response);
-
         assertEquals(HttpStatus.OK, socialMeliController.test(statusCodeTest).getStatusCode());
     }
 
+
+    @Test
+    @DisplayName("US001")
+    public void followTest() {
+
+        int userId = 5;
+        int userIdToUnfollow = 7;
+
+        FollowIdDto followIdDto = new FollowIdDto(userId, userIdToUnfollow);
+
+        ResponseDTO responseDTO = new ResponseDTO("follow successfull",HttpStatus.OK.value());
+
+        when(socialMeliServiceE1.followUser(followIdDto)).thenReturn(responseDTO);
+
+        Assertions.assertEquals(HttpStatus.OK, socialMeliController.US001(userId, userIdToUnfollow).getStatusCode());
+    }
 
     @Test
     @DisplayName("US007")
@@ -58,7 +70,5 @@ public class SocialMeliControllerE1 {
         when(socialMeliServiceE1.unFollowUser(followIdDto)).thenReturn(responseDTO);
 
         Assertions.assertEquals(HttpStatus.OK, socialMeliController.US007(userId, userIdToUnfollow).getStatusCode());
-
-
     }
 }
